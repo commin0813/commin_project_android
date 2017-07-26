@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".page.main.Page2Main" />
+        <activity android:name=".page.signup.Page2Signup" />
+        <activity android:name=".page.user.Page2User"></activity>
     </application>
 
 </manifest>

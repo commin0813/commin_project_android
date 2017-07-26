@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <!-- Commin's Application Common Color Source -->
+    <!-- Black -->
+    <color name="comminBlack01">#010101</color>
+    <color name="comminBlack0D">#0D0D0D</color>
+    <color name="comminBlack18">#181818</color>
+    <!-- Gray -->
+    <color name="comminGrayCD">#cdcdcd</color>
+    <color name="comminGrayD1">#d1d1d1</color>
+    <color name="comminGrayD4">#D4D4D4</color>
+    <color name="comminGrayD3">#D3D3D3</color>
+    <color name="comminGray62">#626262</color>
+    <color name="comminGray45">#454545</color>
+    <color name="comminGray51">#515151</color>
+    <!-- Red -->
+    <color name="comminRed">#FF1102</color>
+    <color name="comminRedWhite">#FF5C6C</color>
+    <color name="comminRedBlack">#B31424</color>
+    <!-- Orange -->
+    <color name="comminOrange">#FF6F29</color>
+    <color name="comminOrangeWhite">#ff8000</color>
+    <color name="comminOrangeBlack">#CD6830</color>
 </resources>
