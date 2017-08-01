@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <!-- Commin's Application Common Color Source -->
+    <color name="comminWhiteFA">#fafafa</color>
     <!-- Black -->
     <color name="comminBlack01">#010101</color>
     <color name="comminBlack0D">#0D0D0D</color>

@@ -32,7 +32,7 @@ public class DialogProgress extends AsyncTask<DialogProgress.ProgressTaskIf, Str
             }
             return result;
         } catch (Exception e) {
-            throw e;
+           throw e;
         }
     }
 
