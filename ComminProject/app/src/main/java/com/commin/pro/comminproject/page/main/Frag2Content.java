@@ -2,6 +2,7 @@ package com.commin.pro.comminproject.page.main;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,8 +18,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.commin.pro.comminproject.R;
 import com.commin.pro.comminproject.model.Model2Comment;
+import com.commin.pro.comminproject.model.Model2Contents;
+import com.commin.pro.comminproject.util.UtilDialog;
+import com.commin.pro.comminproject.widget.DialogProgress;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -35,6 +41,7 @@ public class Frag2Content extends Fragment{
     private TextView tv_content;
     private ListView lsv_list_view;
     private View header,footer;
+    private Advisor2Main advisor = new Advisor2Main();
 
     private ArrayAdapter2Content adapter ;
 
@@ -64,11 +71,39 @@ public class Frag2Content extends Fragment{
         tv_content = (TextView)layout.findViewById(R.id.tv_content);
         lsv_list_view = (ListView)layout.findViewById(R.id.lsv_list_view);
 
+//        setContent();
         setAnim();
         setSlidingPanel();
         setList();
 
     }
+
+    private void setContent(){
+        try{
+            Model2Contents model =  (Model2Contents) DialogProgress.run(getActivity(), new DialogProgress.ProgressTaskIf() {
+                @Override
+                public Object run() throws Exception {
+                    return advisor.queryContent();
+                }
+            });
+            tv_content.setText(model.getTitle());
+//            Log.w(LOG_TAG,model.getTitle());
+        }catch(Exception e){
+            UtilDialog.basicDialog(getActivity(), "접속오류", e.getMessage(), new MaterialDialog.SingleButtonCallback() {
+                @Override
+                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                    getActivity().finish();
+                }
+            }).show();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        setContent();
+    }
+
     private ArrayList<Model2Comment> item_list;
 
     private void setList(){
@@ -84,16 +119,19 @@ public class Frag2Content extends Fragment{
     }
 
     private void setItem_imsi(){
-        Model2Comment model = null;
-        for(int i = 0 ; i <10 ; i++){
-            model = new Model2Comment();
-            model.setComment_contents("안녕하세요, 이것은 테스트 댓글입니다. :: "+i);
-            model.setCreate_time(new Date());
-            model.setUser_name("잘생긴형민");
-            model.setComment_private_num(i);
-            model.setDevice_id(i*10);
-            item_list.add(model);
-        }
+//        Model2Comment model = null;
+//        for(int i = 0 ; i <10 ; i++){
+//            model = new Model2Comment();
+//            model.setComment_contents("안녕하세요, 이것은 테스트 댓글입니다. :: "+i);
+//            model.setCreate_time(new Date());
+//            model.setUser_name("잘생긴형민");
+//            model.setComment_private_num(i);
+//            model.setDevice_id(i*10);
+//            item_list.add(model);
+//        }
+
+
+
         adapter.notifyDataSetChanged();
 
     }

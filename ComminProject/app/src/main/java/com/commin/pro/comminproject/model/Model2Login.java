@@ -16,6 +16,9 @@ public class Model2Login implements Serializable {
     private boolean isLogined;
     private String user_uuid;
 
+    private boolean id;
+    private boolean password;
+
     public String getUser_id() {
         return user_id;
     }
@@ -53,15 +56,33 @@ public class Model2Login implements Serializable {
         try {
             Model2Login model2Login = new Model2Login();
 
-            Map model2Login_map = (Map) response_param.get("model2Login");
+            Map model2Login_map = (Map) response_param.get("Model2Login");
             model2Login.user_uuid = UtilParam.convertString(model2Login_map.get("uuid"));
             model2Login.user_id = UtilParam.convertString(model2Login_map.get("user_id"));
-            model2Login.isLogined = UtilParam.convertBoolean(model2Login_map.get("isLogined"));
+            model2Login.isLogined =  UtilParam.convertBoolean(model2Login_map.get("logined"));
             model2Login.user_password = UtilParam.convertString(model2Login_map.get("user_password"));
+            model2Login.id = UtilParam.convertBoolean(model2Login_map.get("id"));
+            model2Login.password = UtilParam.convertBoolean(model2Login_map.get("password"));
 
             return model2Login;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public boolean isId() {
+        return id;
+    }
+
+    public void setId(boolean id) {
+        this.id = id;
+    }
+
+    public boolean isPassword() {
+        return password;
+    }
+
+    public void setPassword(boolean password) {
+        this.password = password;
     }
 }

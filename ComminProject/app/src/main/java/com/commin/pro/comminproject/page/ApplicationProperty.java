@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import com.commin.pro.comminproject.model.Model2Login;
+
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
@@ -18,6 +20,7 @@ public class ApplicationProperty {
     public static int REQUEST_CODE_LOGIN = 0x0000123;
     public static int REQUEST_CODE_SIGNUP = 0x0000124;
 
+    public static Model2Login model2Login = new Model2Login();
 
     //////////////////////////////////////////PROTOCOL/////////////////////////////////
     public static final String CLIENT_SERVER_CONNECTION = "CONNECTION!@#%%$";
