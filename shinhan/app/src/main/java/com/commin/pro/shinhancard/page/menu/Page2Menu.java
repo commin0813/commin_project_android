@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.commin.pro.shinhancard.Application;
 import com.commin.pro.shinhancard.R;
 import com.commin.pro.shinhancard.page.ApplicationProperty;
 import com.commin.pro.shinhancard.page.login.Page2Login;
+import com.commin.pro.shinhancard.page.use.Page2Use;
 
 public class Page2Menu extends AppCompatActivity {
-    TextView tv_my, tv_a1, tv_a2, tv_a3, tv_a4, tv_a5, tv_a6;
+    TextView tv_my, tv_a1, tv_a2, tv_a3, tv_a4, tv_a5, tv_a6,tv_card_use_list;
     LinearLayout ll_login_top,ll_logout_top;
     Button btn_login;
 
@@ -33,6 +35,22 @@ public class Page2Menu extends AppCompatActivity {
         this.ll_login_top = (LinearLayout)findViewById(R.id.ll_login_top);
         this.ll_logout_top = (LinearLayout)findViewById(R.id.ll_logout_top);
 
+
+        change_login_button();
+
+
+        this.btn_login = (Button)findViewById(R.id.btn_login);
+        tv_card_use_list = (TextView)findViewById(R.id.tv_card_use_list);
+
+        createGUI();
+
+
+    }
+    public void logout(View view){
+        ApplicationProperty.isLogin = false;
+        change_login_button();
+    }
+    private void change_login_button(){
         if(ApplicationProperty.isLogin){
             ll_logout_top.setVisibility(View.VISIBLE);
             ll_login_top.setVisibility(View.INVISIBLE);
@@ -40,15 +58,8 @@ public class Page2Menu extends AppCompatActivity {
             ll_logout_top.setVisibility(View.INVISIBLE);
             ll_login_top.setVisibility(View.VISIBLE);
         }
-
-
-
-        this.btn_login = (Button)findViewById(R.id.btn_login);
-
-        createGUI();
-
-
     }
+
 
 
     private void createGUI() {
@@ -57,6 +68,17 @@ public class Page2Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(Page2Menu.this, Page2Login.class), ApplicationProperty.REQUEST_CODE_LOGIN);
+            }
+        });
+
+        tv_card_use_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(ApplicationProperty.isLogin){
+                    startActivity(new Intent(Page2Menu.this, Page2Use.class));
+                }else{
+                    startActivityForResult(new Intent(Page2Menu.this, Page2Login.class), ApplicationProperty.REQUEST_CODE_LOGIN);
+                }
             }
         });
 
@@ -140,4 +162,14 @@ public class Page2Menu extends AppCompatActivity {
             tv_a6.setTextColor(this.getResources().getColor(R.color.shinhantextDisalble));
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == ApplicationProperty.REQUEST_CODE_LOGIN){
+            change_login_button();
+        }
+    }
+
+
+
 }

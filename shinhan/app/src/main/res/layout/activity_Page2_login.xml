@@ -91,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:clickable="true"
+                android:onClick="onClick"
                 android:src="@drawable/login_button_center" />
 
         </LinearLayout>

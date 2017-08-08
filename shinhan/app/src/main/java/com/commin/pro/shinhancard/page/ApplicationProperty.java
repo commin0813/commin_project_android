@@ -7,5 +7,5 @@ public class ApplicationProperty {
 
     public static final int REQUEST_CODE_LOGIN = 12321;
 
-    public static boolean isLogin = false;
+    public static boolean isLogin = true;
 }

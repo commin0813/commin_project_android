@@ -20,8 +20,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/btn_home" />
         </LinearLayout>
 
@@ -55,6 +55,7 @@
                         android:layout_marginRight="10dp">
 
                         <Button
+                            android:onClick="logout"
                             android:layout_width="wrap_content"
                             android:layout_height="28dp"
                             android:layout_gravity="center"
@@ -117,8 +118,8 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/btn_cancel" />
         </LinearLayout>
     </LinearLayout>
@@ -358,7 +359,6 @@
                                 android:background="@drawable/textview_button"
                                 android:clickable="true"
                                 android:text="카드이용내역"
-
                                 android:textColor="@color/comminGray62"
                                 android:textSize="16sp" />
 

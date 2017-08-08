@@ -20,8 +20,19 @@
         </activity>
         <activity
             android:name=".page.menu.Page2Menu"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".page.login.Page2Login"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".page.login.Page2Login" />
+        <activity android:name=".page.login.Page2Login2" />
+        <activity android:name=".page.login.Page2Login3" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".page.use.Page2Use"></activity>
     </application>
 
 </manifest>

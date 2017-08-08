@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="card">
+        <item>3562-9745-****-8545 | 본인 | nano</item>
+    </string-array>
+    <string-array name="sodur">
+        <item>국내</item>
+        <item>해외</item>
+    </string-array>
+
+    <string-array name="use">
+    <item>일시불+할부</item>
+    <item>일시불</item>
+    <item>할부</item>
+</string-array>
+
+    <string-array name="day">
+        <item>2017년 8월</item>
+        <item>2017년 7월</item>
+        <item>2017년 6월</item>
+        <item>2017년 5월</item>
+        <item>2017년 4월</item>
+    </string-array>
+</resources>
