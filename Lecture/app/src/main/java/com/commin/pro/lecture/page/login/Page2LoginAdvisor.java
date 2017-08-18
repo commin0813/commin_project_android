@@ -1,6 +1,6 @@
 package com.commin.pro.lecture.page.login;
 
-import com.commin.pro.lecture.dao.Driver2SQL;
+import com.commin.pro.lecture.Driver.Driver2SQL;
 import com.commin.pro.lecture.model.Model2User;
 
 public class Page2LoginAdvisor {

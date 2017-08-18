@@ -1,33 +1,24 @@
-package com.commin.pro.lecture.dao;
+package com.commin.pro.lecture.Driver;
 
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.commin.pro.lecture.model.Model2Course;
 import com.commin.pro.lecture.model.Model2User;
+import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.util.DBException;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * Created by user on 2017-08-16.
  */
 public class Driver2SQL {
-
-
-    public static final String TABLA_NAME = "cm_user_table";
-
     class MyQuery extends AsyncTask<String, Void, ResultSet> {
 
         @Override
@@ -76,6 +67,44 @@ public class Driver2SQL {
         }
     }
 
+
+    public void insertCourse(Model2Course model) throws Exception{
+        String TABLE_NAME = "User_Course";
+        String courseCampus = model.getCourseCampus();
+        String courseGrade = model.getCourseGrade();
+        String courseID = model.getCourseID();
+        String courseName = model.getCourseName();
+        String courseProfessor = model.getCourseProfessor();
+        String courseRoom = model.getCourseRoom();
+        String courseTime = model.getCourseTime();
+        String sectionID = model.sectionID;
+        String user_id = ApplicationProperty.model2User.getUser_id();
+
+        try{
+            String query = "INSERT INTO `knustudy`.`User_Course` " +
+                    "(courseCampus, courseGrade, courseID, courseName, courseProfessor, courseRoom, courseTime, sectionID, user_id,create_date) " +
+                    "VALUES ('"+courseCampus+"'," +
+                    "'"+courseGrade+"'," +
+                    "'"+courseID+"'," +
+                    "'"+courseName+"'," +
+                    "'"+courseProfessor+"'," +
+                    "'"+courseRoom+"'," +
+                    "'"+courseTime+"'," +
+                    "'"+sectionID+"'," +
+                    "'"+user_id+"'," +
+                    " now()) DUAL WHERE NOT EXISTS(SELECT * FROM `knustudy`.`User_Course` WHERE courseID = "+courseID+" AND user_id = "+user_id+");";
+
+
+            MyInsert insert = new MyInsert();
+            String str = insert.execute(query).get();
+            if(str != null){
+                throw new DBException(str);
+            }
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
     public boolean login(Model2User model) throws  Exception{
         String TABLE_NAME = "User";
         String user_id = model.getUser_id();
@@ -118,8 +147,7 @@ public class Driver2SQL {
 
 
 
-    public Connection getConnection() {
-
+    private Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://my5008.gabiadb.com/knustudy", "hopekkt", "hopekkt123");

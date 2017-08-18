@@ -37,9 +37,12 @@ public class Page2Login extends AppCompatActivity {
 
     private void init() {
         ed_login_user_password = (EditText) findViewById(R.id.ed_login_user_password);
-//        ed_login_user_password.setText(sharedPreferences.getString(UtilShare.KEY_VALUE_LOGINED_USER_PASS,""));
         ed_login_user_id = (EditText) findViewById(R.id.ed_login_user_id);
-//        ed_login_user_id.setText(sharedPreferences.getString(UtilShare.KEY_VALUE_LOGINED_USER_ID,""));
+        if(sharedPreferences.getBoolean(UtilShare.KEY_VALUE_ISCHECKED,false)){
+            ed_login_user_id.setText(sharedPreferences.getString(UtilShare.KEY_VALUE_LOGINED_USER_ID,""));
+            ed_login_user_password.setText(sharedPreferences.getString(UtilShare.KEY_VALUE_LOGINED_USER_PASS,""));
+        }
+
         cb_user_login_check = (CheckBox)findViewById(R.id.cb_user_login_check);
         cb_user_login_check.setChecked(sharedPreferences.getBoolean(UtilShare.KEY_VALUE_ISCHECKED,false));
         advisor = new Page2LoginAdvisor();
@@ -69,12 +72,7 @@ public class Page2Login extends AppCompatActivity {
             }
             boolean islogin = advisor.login(ed_login_user_id.getText().toString(), ed_login_user_password.getText().toString());
             if (islogin) {
-                UtilDialog.openDialog(Page2Login.this, "로그인 성공", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        return;
-                    }
-                });
+                UtilDialog.showToast(Page2Login.this, "로그인 성공");
 
                 ApplicationProperty.isLogined = true;
                 Model2User model = new Model2User();
@@ -125,9 +123,6 @@ public class Page2Login extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ed_login_user_id.requestFocus();
-
-
-
                         return;
                     }
                 });

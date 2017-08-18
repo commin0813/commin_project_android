@@ -1,0 +1,84 @@
+package com.commin.pro.lecture.page.lecture_search;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.commin.pro.lecture.R;
+import com.commin.pro.lecture.model.Model2Course;
+import com.commin.pro.lecture.util.UtilDialog;
+
+import java.util.ArrayList;
+
+/**
+ * Created by user on 2017-08-18.
+ */
+public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
+    private Context context;
+    private int resource;
+    private ArrayList<Model2Course> items;
+    private Page2LectureSearchAdvisor advisor = null;
+
+
+
+    public ArrayAdapter2LectureSearch(Context context, int resource, ArrayList<Model2Course> items) {
+        super(context, resource, items);
+        this.context = context;
+        this.resource = resource;
+        this.items = items;
+    }
+
+    class ViewHolder {
+        TextView tv_courseID = null;
+        TextView tv_courseName = null;
+        TextView tv_courseProfessor = null;
+        TextView tv_courseTime = null;
+        Button btn_item_save = null;
+    }
+
+
+    @Override
+    public View getView(int position, final View convertView, ViewGroup parent) {
+        View view = convertView;
+        final Model2Course model = items.get(position);
+        if(view  == null){
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(resource, null);
+
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.tv_courseID = (TextView) view.findViewById(R.id.tv_courseID);
+            viewHolder.tv_courseName = (TextView) view.findViewById(R.id.tv_courseName);
+            viewHolder.tv_courseProfessor = (TextView) view.findViewById(R.id.tv_courseProfessor);
+            viewHolder.tv_courseTime = (TextView) view.findViewById(R.id.tv_courseTime);
+            viewHolder.btn_item_save = (Button) view.findViewById(R.id.btn_item_save);
+
+            view.setTag(viewHolder);
+        }
+
+        final ViewHolder viewHolder = (ViewHolder) view.getTag();
+
+        viewHolder.tv_courseID.setText(model.getCourseID());
+        viewHolder.tv_courseName.setText(model.getCourseName());
+        viewHolder.tv_courseProfessor.setText(model.getCourseProfessor());
+        viewHolder.tv_courseTime.setText(model.getCourseTime());
+
+        viewHolder.btn_item_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    advisor = new Page2LectureSearchAdvisor();
+                    advisor.insertCourse(model);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        return view;
+    }
+}

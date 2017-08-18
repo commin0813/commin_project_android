@@ -6,15 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-import com.commin.pro.lecture.dao.Driver2SQL;
 import com.commin.pro.lecture.model.Model2User;
 import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.page.lecture.Page2Lecture;
 import com.commin.pro.lecture.page.login.Page2Login;
 import com.commin.pro.lecture.util.UtilShare;
-import com.mysql.jdbc.Util;
-
-import java.sql.Connection;
 
 public class Application extends AppCompatActivity {
     public SharedPreferences.Editor editor;

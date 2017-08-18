@@ -20,6 +20,8 @@ public class ApplicationProperty {
     public static int REQUEST_CODE_FOR_LECTURE_EDIT = 0x14;
     public static int RESULT_LOGOUT = 0x15;
 
+    public static int REQUEST_CODE_FOR_LECTURE_SEARCH = 0x16;
+
 
 
 /////////////////////////////////////////////////

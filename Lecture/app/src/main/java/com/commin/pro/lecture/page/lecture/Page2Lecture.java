@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.page.lecture_edit.Page2LectureEdit;
+import com.commin.pro.lecture.page.lecture_search.Page2LectureSearch;
 import com.commin.pro.lecture.page.login.Page2Login;
 import com.commin.pro.lecture.util.UtilDialog;
 import com.commin.pro.lecture.util.UtilShare;
@@ -63,12 +64,12 @@ public class Page2Lecture extends AppCompatActivity {
     }
 
     private void init_listener() {
-//        iv_button_add_lecture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivityForResult(new Intent(Page2Lecture.this, Page2LectureAdd.class), ApplicationProperty.REQUEST_CODE_FOR_LECTURE_ADD);
-//            }
-//        });
+        iv_button_add_lecture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(Page2Lecture.this, Page2LectureSearch.class), ApplicationProperty.REQUEST_CODE_FOR_LECTURE_SEARCH);
+            }
+        });
 
         iv_button_edit_lecture.setOnClickListener(new View.OnClickListener() {
             @Override

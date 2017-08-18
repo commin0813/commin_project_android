@@ -1,8 +1,7 @@
 package com.commin.pro.lecture.page.sign_up;
 
-import com.commin.pro.lecture.dao.Driver2SQL;
+import com.commin.pro.lecture.Driver.Driver2SQL;
 import com.commin.pro.lecture.model.Model2User;
-import com.mysql.jdbc.Driver;
 
 /**
  * Created by user on 2017-08-16.

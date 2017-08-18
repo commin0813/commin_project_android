@@ -33,4 +33,12 @@
 
     <color name="today">#FF4081</color>
     <color name="greyed_out">#c7c7c7</color>
+
+    <!-- shinhan -->
+    <color name="shinhanNaby">#17181d</color>
+    <color name="shinhanWhiteNaby">#25262b</color>
+    <color name="shinhanTopMenu">#292c35</color>
+    <color name="shinhantextDisalble">#7f8085</color>
+    <color name="shinhanbutton">#25b3dc</color>
+    <color name="shinhanWhitebutton">#5525b3dc</color>
 </resources>

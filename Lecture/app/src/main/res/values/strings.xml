@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Lecture</string>
-    <string name="app_title">KNU 시간표 도우미</string>
+    <string name="app_title">KNU 강의 정보 시스템</string>
+    <string name="app_search_title">KNU 강의 정보 검색</string>
 
+
+    <!-- Schedule -->
     <string-array name="days_5">
         <item>월</item>
         <item>화</item>
