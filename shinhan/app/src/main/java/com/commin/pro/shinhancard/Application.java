@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.commin.pro.shinhancard.page.home.Page2Home;
 import com.commin.pro.shinhancard.page.menu.Page2Menu;
 import com.commin.pro.shinhancard.util.Util2Excel;
 
@@ -22,7 +23,7 @@ public class Application extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        startActivity(new Intent(Application.this, Page2Menu.class));
+        startActivity(new Intent(Application.this, Page2Home.class));
         finish();
 
     }

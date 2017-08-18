@@ -74,8 +74,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/login_button_cancel"
-                android:text="취소"
                 android:onClick="back"
+                android:text="취소"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -88,8 +88,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@drawable/login_button_confirm"
-                android:text="확인"
                 android:onClick="confirm"
+                android:text="확인"
                 android:textColor="@color/comminWhiteFA"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -120,16 +120,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginBottom="50dp"
                 android:layout_gravity="bottom"
+                android:layout_marginBottom="50dp"
                 android:gravity="right">
 
                 <View
-                    android:layout_width="120dp"
+                    android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:clickable="true"
-                    android:onClick="delete"
-                    />
+                    android:onClick="delete" />
 
             </LinearLayout>
 
@@ -143,8 +142,7 @@
                     android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:clickable="true"
-                    android:onClick="confirm"
-                    />
+                    android:onClick="confirm" />
 
             </LinearLayout>
 

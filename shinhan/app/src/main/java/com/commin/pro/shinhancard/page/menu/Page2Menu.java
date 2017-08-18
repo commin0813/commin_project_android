@@ -60,7 +60,9 @@ public class Page2Menu extends AppCompatActivity {
         }
     }
 
-
+    public void back(View view){
+        onBackPressed();
+    }
 
     private void createGUI() {
 

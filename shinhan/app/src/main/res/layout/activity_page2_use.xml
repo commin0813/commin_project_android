@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:fillViewport="true"
     android:scrollbars="none"
     android:visibility="visible"
     tools:context="com.commin.pro.shinhancard.page.use.Page2Use">
@@ -199,6 +198,7 @@
                 android:textSize="20sp" />
 
             <RadioGroup
+                android:id="@+id/rgroup_select"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -228,13 +228,45 @@
                     android:textSize="20sp" />
             </RadioGroup>
 
-            <Spinner
-                android:id="@+id/sp_day"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/radiobutton"
-                android:entries="@array/day" />
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/sp_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/radiobutton"
+                    android:entries="@array/day" />
+
+                <LinearLayout
+                    android:id="@+id/ll_period_layer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aaa" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aaa" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="aaa" />
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,17 +365,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_weight="1"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="15dp"
+                android:layout_height="1.5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/comminGrayCD" />
 
             <ExpandableListView
@@ -353,9 +384,76 @@
                 android:layout_weight="1"
                 android:scrollbars="none" />
 
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_use_query_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:text="조회된 거래 내역이 없습니다."
+                android:textColor="@color/comminGrayCD"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/comminGrayCD" />
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="이용내역조회 안내"
+                    android:textColor="@color/comminGray62"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/comminGrayCD" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

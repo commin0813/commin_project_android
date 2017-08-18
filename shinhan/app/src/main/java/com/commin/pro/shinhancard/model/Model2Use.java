@@ -21,14 +21,18 @@ public class Model2Use implements Serializable{
     }
 
     public void setUse_date(String use_date) {
+        use_date = use_date.replace("/","-");
         this.use_date = use_date;
     }
 
     public String getUse_confirm_date() {
+
+
         return use_confirm_date;
     }
 
     public void setUse_confirm_date(String use_confirm_date) {
+        use_confirm_date = use_confirm_date.replace("/",".");
         this.use_confirm_date = use_confirm_date;
     }
 

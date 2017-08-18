@@ -36,7 +36,7 @@ public class Page2Login3 extends AppCompatActivity {
     }
 
     public void confirm(View view) {
-        if (ed_password.getText().toString().length() == 7) {
+        if (ed_password.getText().toString().length() == 11) {
             setResult(RESULT_OK);
             finish();
         } else {
