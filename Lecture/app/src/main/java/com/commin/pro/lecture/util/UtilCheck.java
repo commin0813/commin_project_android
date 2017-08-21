@@ -71,6 +71,15 @@ public class UtilCheck {
         return time;
     }
 
+    public static int checkTimeNameNumber(String id) {
+
+        StringTokenizer st = new StringTokenizer(id, "+");
+        int row_index = Integer.parseInt(st.nextToken());
+        int time = -1;
+
+        return row_index;
+    }
+
     public static String checkDay(String id) {
 
         StringTokenizer st = new StringTokenizer(id, "+");

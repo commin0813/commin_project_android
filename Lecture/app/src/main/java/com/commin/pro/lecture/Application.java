@@ -28,6 +28,8 @@ public class Application extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        ApplicationProperty.time_title = getResources().getStringArray(R.array.time_title);
+
         if(sharedPreferences.getBoolean(UtilShare.KEY_VALUE_ISCHECKED,false)){
             Model2User model = new Model2User();
             model.setUser_id(sharedPreferences.getString(UtilShare.KEY_VALUE_LOGINED_USER_ID,""));

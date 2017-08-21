@@ -1,6 +1,8 @@
 package com.commin.pro.lecture.page.lecture_search;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
+import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.util.UtilDialog;
 
 import java.util.ArrayList;
@@ -73,8 +76,33 @@ public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
                 try{
                     advisor = new Page2LectureSearchAdvisor();
                     advisor.insertCourse(model);
+
+                    ArrayList<Model2Course> registered_list = ApplicationProperty.getRegisteredList();
+                    if(registered_list.size() != 0){
+                        for(Model2Course model : registered_list){
+                            //이곳에 시간표 중복 확인 메서드 넣어야 함
+                        }
+                    }
+
+                    registered_list.add(model); //등록 성공
+
+                    Log.d("log", "");
+
+                    UtilDialog.openDialog((Page2LectureSearch)context,"등록 하였습니다.", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            return;
+                        }
+                    });
+
                 }catch (Exception e){
                     e.printStackTrace();
+                    UtilDialog.openError((Page2LectureSearch)context, e.getMessage(), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            return;
+                        }
+                    });
                 }
             }
         });

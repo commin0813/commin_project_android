@@ -1,12 +1,14 @@
 package com.commin.pro.lecture.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by user on 2017-08-17.
  */
-public class Model2Course implements Serializable{
+public class Model2Course implements Serializable {
     public final String sectionID = "20172";
     private String courseUniverse = null;
     private String universeCode = null;
@@ -22,15 +24,31 @@ public class Model2Course implements Serializable{
     private String courseProfessor = null;
     private String courseTime = null;
     private String courseRoom = null;
-    private String courseLimit= null;
+    private String courseLimit = null;
     private String coursePeople = null;
     private String coursePackage = null;
     private String coursePackageEnabled = null;
     private String courseNote = null;
-
     private String student_class = null;
 
-    public Model2Course(){
+
+    private String id = null;
+    private int row_index;
+    private int column_index;
+    private boolean isData;
+    private boolean isLecture;
+    private String start_time;
+    private String end_time;
+    private String time_name;
+    private String day_name;
+    private int group_id;
+    private String name_value;
+
+
+
+
+
+    public Model2Course() {
 
     }
 
@@ -192,5 +210,94 @@ public class Model2Course implements Serializable{
 
     public void setStudent_class(String student_class) {
         this.student_class = student_class;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getRow_index() {
+        return row_index;
+    }
+
+    public void setRow_index(int row_index) {
+        this.row_index = row_index;
+    }
+
+    public int getColumn_index() {
+        return column_index;
+    }
+
+    public void setColumn_index(int column_index) {
+        this.column_index = column_index;
+    }
+
+    public boolean isData() {
+        return isData;
+    }
+
+    public void setData(boolean data) {
+        isData = data;
+    }
+
+    public int getGroup_id() {
+        return group_id;
+    }
+
+    public void setGroup_id(int group_id) {
+        this.group_id = group_id;
+    }
+
+    public String getName_value() {
+        return name_value;
+    }
+
+    public void setName_value(String name_value) {
+        this.name_value = name_value;
+    }
+
+    public boolean isLecture() {
+        return isLecture;
+    }
+
+    public void setLecture(boolean lecture) {
+        isLecture = lecture;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+
+
+    public String getDay_name() {
+        return day_name;
+    }
+
+    public void setDay_name(String day_name) {
+        this.day_name = day_name;
+    }
+
+    public String getTime_name() {
+        return time_name;
+    }
+
+    public void setTime_name(String time_name) {
+        this.time_name = time_name;
     }
 }

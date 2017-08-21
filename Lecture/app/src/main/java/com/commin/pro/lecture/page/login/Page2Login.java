@@ -92,10 +92,15 @@ public class Page2Login extends AppCompatActivity {
                     UtilShare.removePreferences(editor,UtilShare.KEY_VALUE_LOGINED_USER_PASS);
                     editor.clear();
                 }
+
                 ed_login_user_id.setText("");
                 ed_login_user_password.setText("");
 
                 ApplicationProperty.model2User = model;
+
+
+
+
                 startActivity(new Intent(Page2Login.this, Page2Lecture.class));
                 finish();
 
