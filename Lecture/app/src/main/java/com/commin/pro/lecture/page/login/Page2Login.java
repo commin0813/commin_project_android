@@ -18,6 +18,7 @@ import com.commin.pro.lecture.util.DBException;
 import com.commin.pro.lecture.util.UtilDialog;
 import com.commin.pro.lecture.util.UtilShare;
 
+
 public class Page2Login extends AppCompatActivity {
     EditText ed_login_user_password, ed_login_user_id;
     Page2LoginAdvisor advisor = null;
@@ -48,6 +49,10 @@ public class Page2Login extends AppCompatActivity {
         advisor = new Page2LoginAdvisor();
     }
 
+    /**********************
+     * 회원가입 버튼을 누르면 실행되는 메서드
+     * @param view
+     */
     public void sign_up(View view) {
         startActivityForResult(new Intent(Page2Login.this, Page2SignUp.class), ApplicationProperty.REQUEST_CODE_SIGN_UP);
     }
@@ -64,6 +69,11 @@ public class Page2Login extends AppCompatActivity {
         return "OK";
     }
 
+    /**********************
+     * Shared Preference를 사용해서 설정정보들을 파일로 저장시켜둡니다. 그래야
+     * 껐다켜도 로그인을 그대로 유지시킬 수 있고 설정정보들도 그대로 유지시켜둘 수 있습니다.
+     * @param view
+     */
     public void login(View view) {
         try {
             String message = checkInvalid();
@@ -96,10 +106,7 @@ public class Page2Login extends AppCompatActivity {
                 ed_login_user_id.setText("");
                 ed_login_user_password.setText("");
 
-                ApplicationProperty.model2User = model;
-
-
-
+                ApplicationProperty.model2User = model; // static으로 계속해서 저장해둘려고 로그인이완료되는 시점에 model을 만들어 넣어둡니다.
 
                 startActivity(new Intent(Page2Login.this, Page2Lecture.class));
                 finish();

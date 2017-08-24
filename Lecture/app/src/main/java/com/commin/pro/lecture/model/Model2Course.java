@@ -2,6 +2,10 @@ package com.commin.pro.lecture.model;
 
 import java.io.Serializable;
 
+
+/**************************
+ * 강의정보를 담고있는 모델입니다.
+ */
 public class Model2Course implements Serializable {
     public final String sectionID = "20172";
     private String courseUniverse = null;
@@ -29,14 +33,16 @@ public class Model2Course implements Serializable {
     private String id = null;
     private int row_index;
     private int column_index;
-    private boolean isData;
-    private boolean isLecture;
-    private String start_time;
-    private String end_time;
-    private String time_name;
-    private String day_name;
-    private int group_id;
-    private String name_value;
+    private boolean isData; // 그리드뷰 행의 첫 시작은 시간영역이고 나머지 영역은 데이터영역이라 생각해보세요. 데이터영역인지 시간영역인지 확인하기위해 만듭니다.
+    private boolean isLecture; // 데이터영역중에 강의데이터를 가지고있는 영역이있겠죠? 그런 곳을 구별하기위해 만듭니다.
+    private String start_time; // 쓸일없네요
+    private String end_time; // 쓸일없어요.
+    private String time_name; // 1A 2B 이런걸 시간이름으로 생각해서 시간이름이라는 변수명으로 지었습니다.
+    private String day_name; // 요일이름입니다.
+    private int group_id; // 안씁니다.
+    private String name_value; // 시간영역의 네임벨류로 사용됩니다.
+
+    private int backgroundColor; // 디비에 Color값을 저장했다가 모델에담을때 사용합니다
 
     public String getCourseUniverse() {
         return courseUniverse;
@@ -285,5 +291,13 @@ public class Model2Course implements Serializable {
 
     public void setTime_name(String time_name) {
         this.time_name = time_name;
+    }
+
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 }

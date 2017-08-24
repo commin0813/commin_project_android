@@ -2,7 +2,9 @@ package com.commin.pro.lecture.model;
 
 import java.io.Serializable;
 
-
+/*******************
+ * 유저 정보를 담는 모델
+ */
 public class Model2User implements Serializable{
     private String user_id;
     private String user_password;

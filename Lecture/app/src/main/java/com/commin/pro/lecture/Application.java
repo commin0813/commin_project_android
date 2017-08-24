@@ -16,6 +16,11 @@ public class Application extends AppCompatActivity {
     public SharedPreferences.Editor editor;
     public SharedPreferences sharedPreferences;
 
+    //////////////////////////////////////////////////
+    /// Lecture Color
+    /////////////////////////////////////////////////
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

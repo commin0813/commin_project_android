@@ -49,9 +49,6 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(resource, parent, false);
 
-            //셋팅정보를 sharedPreferences를 통해 가져와 Time Value에 따라 view의 크기를 조절합니다.
-//            sharedPreferences = UtilShare.getSharedPreferences(UtilShare.SAHRE_STATUS, context);
-//            editor = UtilShare.getEditor(sharedPreferences);
             int time_resource = R.array.time;
             String[] arr_string_time = context.getResources().getStringArray(time_resource);
 
@@ -77,32 +74,10 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
                 viewHolder.tv_item_description.setText(model.getCourseProfessor() + "");
                 viewHolder.tv_item_end.setText(model.getCourseRoom() + "");
 
-                switch (UtilCheck.checkDay(model.getId())) {//이 영역은 월 화 수 목 금 토 일 영역의 바탕 색을 지정.
-                    case "월":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteBlue));
-                        break;
-                    case "화":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorRed36));
-                        break;
-                    case "수":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorDarkOrange));
-                        break;
-                    case "목":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorYellow));
-                        break;
-                    case "금":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteGreen));
-                        break;
-                    case "토":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorBrown));
-                        break;
-                    case "일":
-                        view.setBackgroundColor(context.getResources().getColor(R.color.colorDarkOrange));
-                        break;
-                }
+                view.setBackgroundColor(context.getResources().getColor(model.getBackgroundColor()));
 
             }else {
-                viewHolder.tv_item_start.setText(" .  ");
+                viewHolder.tv_item_start.setText("    "); //없는 데이터를 그냥 두면 이상한 현상이 발생됩니다. 스페이스 값이라도 줍니다.
                 viewHolder.tv_item_description.setText("    ");
                 viewHolder.tv_item_end.setText("    ");
                 view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteFA));
@@ -114,7 +89,6 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
             viewHolder.tv_item_end.setText("    ");
             view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteFA));
         }
-
         return view;
     }
 

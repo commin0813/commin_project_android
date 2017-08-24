@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-/**
- * Created by user on 2016-08-02.
- */
+
 public class UtilShare {
     public final static String LOG_TAG = "UtilShare";
 
@@ -36,22 +34,21 @@ public class UtilShare {
     //file_data_defalt_value
     public final static int TIME_RESOURCE_DEFALT_VALUE = 0;
     public final static int DAY_RESOURCE_DEFALT_VALUE = 0;
-    public final static boolean USER_LOGINED  = false;
-    public final static boolean USER_LOGIN_CHECK  = false;
-
+    public final static boolean USER_LOGINED = false;
+    public final static boolean USER_LOGIN_CHECK = false;
 
 
     public static void savePreferences(SharedPreferences.Editor editor, String key, String value, int type) {
 
 
         switch (type) {
-                case INT_TYPE:
-                    editor.putInt(key, Integer.parseInt(value));
-                    break;
-                case STRING_TYPE:
-                    editor.putString(key, value);
-                    break;
-                case FLOAT_TYPE:
+            case INT_TYPE:
+                editor.putInt(key, Integer.parseInt(value));
+                break;
+            case STRING_TYPE:
+                editor.putString(key, value);
+                break;
+            case FLOAT_TYPE:
                 break;
             case LONG_TYPE:
                 editor.putLong(key, Long.valueOf(value));
@@ -80,7 +77,7 @@ public class UtilShare {
     public static SharedPreferences getSharedPreferences(String file_name, Context context) {
         if (file_name.equals(SAHRE_STATUS)) {
             return context.getSharedPreferences(file_name, Context.MODE_MULTI_PROCESS);
-        }else if(file_name.equals(SAHRE_USER)){
+        } else if (file_name.equals(SAHRE_USER)) {
             return context.getSharedPreferences(file_name, Context.MODE_MULTI_PROCESS);
         }
 

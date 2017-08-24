@@ -4,9 +4,6 @@ import android.util.Log;
 
 import java.util.StringTokenizer;
 
-/**
- * Created by user on 2016-12-15.
- */
 public class UtilCheck {
     public static int checkPeriod(String start_time, String end_time) {
         return Integer.parseInt(end_time) - Integer.parseInt(start_time);

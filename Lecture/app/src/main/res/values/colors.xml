@@ -41,4 +41,18 @@
     <color name="shinhantextDisalble">#7f8085</color>
     <color name="shinhanbutton">#25b3dc</color>
     <color name="shinhanWhitebutton">#5525b3dc</color>
+
+
+    <!-- background color -->
+    <color name="backBackDDC">#DDCAC8</color>
+    <color name="backBack84">#8498C8</color>
+    <color name="backBackCB">#CBA983</color>
+    <color name="backBack80">#806B53</color>
+    <color name="backBack83">#CBD183</color>
+    <color name="backBack81">#818554</color>
+    <color name="backBackD1">#D1A484</color>
+    <color name="backBack85">#856854</color>
+    <color name="backBackC3">#C3E6C6</color>
+    <color name="backBackDD">#DD732F</color>
+    <color name="backBackE8">#E8DCC5</color>
 </resources>

@@ -1,17 +1,13 @@
 package com.commin.pro.lecture.util;
 
-import android.util.Log;
-
 import com.commin.pro.lecture.model.Model2LectureTime;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 2017-08-21.
- */
+
 public class UtilTime {
 
-    public  static boolean isStringInt(char str) {
+    public static boolean isStringInt(char str) {
         try {
             String ss = str + "";
             Double.parseDouble(ss);

@@ -13,9 +13,7 @@ import com.commin.pro.lecture.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 2016-12-15.
- */
+
 public class Adapter2GridDay extends ArrayAdapter<String> {
     Context context;
     LayoutInflater inflater;

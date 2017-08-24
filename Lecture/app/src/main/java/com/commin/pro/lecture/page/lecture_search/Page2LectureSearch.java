@@ -1,9 +1,11 @@
 package com.commin.pro.lecture.page.lecture_search;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +18,6 @@ import android.widget.RadioGroup;
 
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
-import com.commin.pro.lecture.util.UtilCustomDialog;
 import com.commin.pro.lecture.util.UtilDialog;
 
 import org.jsoup.Jsoup;
@@ -26,6 +27,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Page2LectureSearch extends AppCompatActivity {
     public static String LOG_TAG = "Page2LectureSearch";
@@ -39,6 +41,11 @@ public class Page2LectureSearch extends AppCompatActivity {
     private ListView lst_search_result = null;
     private ArrayAdapter2LectureSearch adapter = null;
 
+
+    private Handler mHandler;
+    private ProgressDialog mProgressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +56,11 @@ public class Page2LectureSearch extends AppCompatActivity {
 
     private void init() {
         btn_query_data = (Button) findViewById(R.id.btn_query_data);
-
         btn_query_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    startGetData();
-
+                    startGetData(); // 크롤링 시작부분
                 } catch (Exception e) {
                     UtilDialog.openError(Page2LectureSearch.this, e.getMessage(), new DialogInterface.OnClickListener() {
                         @Override
@@ -76,69 +81,64 @@ public class Page2LectureSearch extends AppCompatActivity {
         lst_search_result.setDivider(null);
 
 
+        mHandler = new Handler();
+
+
     }
 
-    private void startGetData() throws Exception{
-        try{
-            if (courses == null) {
-                courses = new GetSiteInfo(Page2LectureSearch.this).execute().get();
-            }
+    private void startGetData() throws Exception {
 
-            if (courses != null) {
-                createData(courses);
+        /*******
+         * 다이얼로그 프로그래스바를 조회를 하기전에 화면에 띄워줍니다.
+         * 조회 부분을 Handler를 이용해 약간의 딜레이를 준 이유는 다이얼로그가 뜨기전에
+         * 조회가 시작되어 화면이 멈추는 현상을 방지하기위해서입니다.
+         * 조회가 끝나는 시점과 데이터 셋팅이 끝나는 시점에 다이얼로그를 dismiss 시켜줍니다.
+         * ********/
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mProgressDialog = ProgressDialog.show(Page2LectureSearch.this, "",
+                        "잠시만 기다려 주세요.", true);
             }
-        }catch (Exception e){
+        });
+
+        try {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (courses == null) { // courses 에 데이터가 없으면 크롤링을 시작합니다. 만약 데이터가있으면 있는 데이터로 바로 셋팅을 합니다.
+                            courses = new GetSiteInfo(Page2LectureSearch.this).execute().get();
+                        }
+                        if (courses != null) {
+                            createData(courses); // 데이터를 리스트뷰에 뿌리기전에 검색조건을 확인하여 데이터를 가공하는 메서드를 호출하는 부분입니다.
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            Handler handler = new Handler();
+            handler.postDelayed(runnable, 100);
+
+        } catch (Exception e) {
             throw e;
         }
     }
 
-    private ArrayList<Model2Course> getContainItem(ArrayList<Model2Course> courses, String search_text) {
-        int setting_search_id = rdg_search.getCheckedRadioButtonId();
-        ArrayList<Model2Course> imsi_list = new ArrayList<Model2Course>();
-
-        switch (setting_search_id) {
-            case R.id.rd_search_pro: { // 교수이름
-                for (Model2Course model : courses) {
-                    String name = model.getCourseProfessor();
-                    if (name == null) {
-                        continue;
-                    }
-                    if (name.equals(search_text) || name.contains(search_text)) {
-                        imsi_list.add(model);
-                    }
-                }
-                break;
-            }
-            case R.id.rd_search_department: { //학과이름
-                for (Model2Course model : courses) {
-                    String name = model.getCourseMajor();
-                    if (name == null) {
-                        continue;
-                    }
-                    if (name.equals(search_text) || name.contains(search_text)) {
-                        imsi_list.add(model);
-                    }
-                }
-                break;
-            }
-            case R.id.rd_search_subject: { // 과목이름
-                for (Model2Course model : courses) {
-                    String name = model.getCourseName();
-                    if (name == null) {
-                        continue;
-                    }
-                    if (name.equals(search_text) || name.contains(search_text)) {
-                        imsi_list.add(model);
-                    }
-                }
-                break;
-            }
-
-        }
-
-        return imsi_list;
-    }
-
+    /**********************
+     * param의 이름도 courses 이기때문에 헷갈리지 마세요.
+     * 전역변수로 되어있는 courses는 항상 최초의 크롤링한 데이터를 가지고있습니다.
+     * 인자로 받은 courses는 검색조건에따라 계속해서 값이 변하고 그걸 setData()메서드로 보내서
+     * ListView에 넣는것입니다.
+     * @param courses
+     * @throws Exception
+     */
     private void createData(ArrayList<Model2Course> courses) throws Exception {
         int setting_campus_id = rdg_campus.getCheckedRadioButtonId();
         ArrayList<Model2Course> imsi_list = new ArrayList<Model2Course>();
@@ -197,7 +197,82 @@ public class Page2LectureSearch extends AppCompatActivity {
         setData(courses);
     }
 
+
+    /*********************************
+     * 만약 검색조건에 사용자가 입력한 검색키워드가 있다면
+     * 검색 키워드가 포함된 데이터를 찾아서 리스트형식으로 리턴해주는 메서드입니다.
+     * @param courses
+     * @param search_text
+     * @return
+     */
+    private ArrayList<Model2Course> getContainItem(ArrayList<Model2Course> courses, String search_text) {
+        int setting_search_id = rdg_search.getCheckedRadioButtonId();
+        ArrayList<Model2Course> imsi_list = new ArrayList<Model2Course>();
+
+        switch (setting_search_id) {
+            case R.id.rd_search_pro: { // 교수이름
+                for (Model2Course model : courses) {
+                    String name = model.getCourseProfessor();
+                    if (name == null) {
+                        continue;
+                    }
+                    if (name.equals(search_text) || name.contains(search_text)) {
+                        imsi_list.add(model);
+                    }
+                }
+                break;
+            }
+            case R.id.rd_search_department: { //학과이름
+                for (Model2Course model : courses) {
+                    String name = model.getCourseMajor();
+                    if (name == null) {
+                        continue;
+                    }
+                    if (name.equals(search_text) || name.contains(search_text)) {
+                        imsi_list.add(model);
+                    }
+                }
+                break;
+            }
+            case R.id.rd_search_subject: { // 과목이름
+                for (Model2Course model : courses) {
+                    String name = model.getCourseName();
+                    if (name == null) {
+                        continue;
+                    }
+                    if (name.equals(search_text) || name.contains(search_text)) {
+                        imsi_list.add(model);
+                    }
+                }
+                break;
+            }
+
+        }
+
+        return imsi_list;
+    }
+
+
+    /*************************
+     * 검색조건등으로 만들어진 데이터를
+     * ListView에 뿌리는 메서드입니다.
+     * @param dataList
+     * @throws Exception
+     */
     private void setData(ArrayList<Model2Course> dataList) throws Exception {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (mProgressDialog != null && mProgressDialog.isShowing()) {
+                        mProgressDialog.dismiss();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 2000);
+
         UtilDialog.showToast(Page2LectureSearch.this, dataList.size() + "개의 데이터를 가져왔습니다.");
         adapter = new ArrayAdapter2LectureSearch(Page2LectureSearch.this, R.layout.item_list_search_result, dataList);
         lst_search_result.setAdapter(adapter);
@@ -205,7 +280,11 @@ public class Page2LectureSearch extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+    /**************************
+     * 리스트뷰가 화면을 그릴때, 리스트뷰 자식 뷰들의 길이를 구해서 리스트뷰에게알려주는 메서드입니다.
+     * 이렇게하면 리스트뷰가 더 깔끔하게 잘 나옵니다.
+     * @param listView
+     */
     public void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
@@ -232,55 +311,43 @@ public class Page2LectureSearch extends AppCompatActivity {
         onBackPressed();
     }
 
-    class GetSiteInfo extends AsyncTask<Integer, String, ArrayList<Model2Course>> {
+
+    /*****************************
+     * 안드로이드에서는 메인 쓰레드안에서 네트워크를 통한 서비스를 할 수 없도록 해놨습니다.
+     * 때문에 다른 쓰레드안에서 Network 작업을 해야하는데요
+     * 대표적으로 사용되는 AsyncTask를 이용해 크롤링하였습니다.
+     */
+    class GetSiteInfo extends AsyncTask<Integer, Integer, ArrayList<Model2Course>> {
         private Context context;
-
-
         public GetSiteInfo(Context context) {
             this.context = context;
-
         }
 
         @Override
         protected ArrayList<Model2Course> doInBackground(Integer... integers) {
             Elements tableRows = null;
             ArrayList<Model2Course> course_list = new ArrayList<Model2Course>();// 테이블 Row데이터를 Model에담아 리스트에 넣는다.
-
-
             try {
 
-
-                Document document = Jsoup.connect(url).get();
-                tableRows = document.select("#viewPlans > table > tbody > tr");
-
+                Document document = Jsoup.connect(url).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
+                tableRows = document.select("#viewPlans > table > tbody > tr"); // html 태그의 아이디가 viewPlans인 태그 안에 table row 데이터를 선택해서 Elements 로 받아옵니다.
                 int i = 0;// 테이블의 첫번째 Row는 받지않기위해서 쓰는 변수
-
-
                 for (Element element : tableRows) {
-                    publishProgress("a");
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     Elements tableColumn = element.children();
                     int column_count = 1;//테이블 각 항목에따라 모델에 set해야하는 부분이 다르므로 구분하기위해 쓰는 변수
                     Model2Course model = new Model2Course();
-
                     for (Element element1 : tableColumn) {
                         if (i == 0) {
-                            i = 1;
+                            i = 1; //첫번째 행은 건너띄고자 만들었습니다. (제목등이 들어있습니다.)
                             break;
                         }
-
                         String text = element1.text();
                         if (text.equals("")) {
                             Log.d(LOG_TAG, "No Data ::: " + column_count);
                             column_count++;
                             continue;
                         }
-                        switch (column_count) {
+                        switch (column_count) {//컬럼을 분기하여 model에다가 데이터를 넣습니다.
                             case 1: {//학년
                                 model.setCourseGrade(text);
                                 break;
@@ -370,18 +437,17 @@ public class Page2LectureSearch extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
         }
 
         @Override
-        protected void onProgressUpdate(String... values) {
-
-            Log.d("update","update!");
+        protected void onProgressUpdate(Integer... values) {
         }
 
         @Override
         protected void onPostExecute(ArrayList<Model2Course> result) {
-
+            if (mProgressDialog != null && mProgressDialog.isShowing()) { // 맨 마지막에 호출되는 메서드이므로 이곳에 다이얼로그 프로그래스바를 dissmiss시키는 코딩을 했습니다.
+                mProgressDialog.dismiss();
+            }
         }
 
     }

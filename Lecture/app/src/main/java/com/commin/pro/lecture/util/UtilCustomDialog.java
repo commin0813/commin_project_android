@@ -12,9 +12,6 @@ import android.widget.TextView;
 import com.commin.pro.lecture.R;
 
 
-/**
- * Created by user on 2016-04-19.
- */
 public class UtilCustomDialog extends Dialog {
 
     private static UtilCustomDialog utilCustomDialog;

@@ -4,12 +4,16 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhiteFA"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="월"
-        android:gravity="center"
 
+    <TextView
         android:id="@+id/tv_item_day"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:gravity="center"
+        android:text="월" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGray78"></View>
 </LinearLayout>

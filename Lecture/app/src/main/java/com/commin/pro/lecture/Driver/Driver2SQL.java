@@ -4,6 +4,8 @@ package com.commin.pro.lecture.Driver;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.commin.pro.lecture.Application;
+import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
 import com.commin.pro.lecture.model.Model2LectureTime;
 import com.commin.pro.lecture.model.Model2User;
@@ -20,6 +22,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Driver2SQL {
+
+    /*************
+     * query를 담당하는 AsyncTask 클래스입니다.
+     * 쿼리문을 실행시키고 리턴값으로 ResultSet을 받아옵니다.
+     */
     class MyQuery extends AsyncTask<String, Void, ResultSet> {
 
         @Override
@@ -48,6 +55,9 @@ public class Driver2SQL {
 
     }
 
+    /*****************
+     * 삭제 , 갱신 등 UPdate를 할때 사용하는 클래스입니다.
+     */
     class MyUpdate extends AsyncTask<String, Void, String> {
 
         @Override
@@ -72,6 +82,13 @@ public class Driver2SQL {
         }
     }
 
+
+    /************************
+     * 강의정보를 디비에서 지울때 사용하는 메서드입니다.
+     * @param course_id
+     * @param user_id
+     * @throws Exception
+     */
     public void deleteLectureData(String course_id,String user_id) throws Exception{
         try{
             String query = "DELETE FROM `knustudy`.`User_Course`  WHERE courseID = '" + course_id + "' AND user_id = '" + user_id + "';";
@@ -86,6 +103,13 @@ public class Driver2SQL {
         }
     }
 
+
+    /**********************
+     * 강의정보를 알맞은 모델의 형태로 만들어서 저장하는 메서드입니다.
+     * ApplicationProperty에 저장하여 어떤 클래스에서든 접근가능하도록 합니다.
+     * @param user_id
+     * @throws Exception
+     */
     public void setLectureData(String user_id) throws Exception {
         try {
             String query = "SELECT * FROM `knustudy`.`User_Course` WHERE user_id = '" + user_id + "'";
@@ -108,6 +132,8 @@ public class Driver2SQL {
                             model.setCourseProfessor(set.getString("courseProfessor"));
                             model.setCourseRoom(set.getString("courseRoom"));
                             model.setCourseTime(set.getString("courseTime"));
+                            model.setBackgroundColor(set.getInt("group_color"));
+
                             model.setData(true);
                             model.setLecture(true);
 
@@ -163,6 +189,12 @@ public class Driver2SQL {
         }
     }
 
+
+    /*******************************
+     * 등록한 과목인지 확인하기위한 메서드입니다.
+     * @param model
+     * @throws Exception
+     */
     public void checkDuplicateCourse(Model2Course model) throws Exception {
         String courseID = model.getCourseID();
         String user_id = ApplicationProperty.model2User.getUser_id();
@@ -181,7 +213,11 @@ public class Driver2SQL {
         }
     }
 
-
+    /***************************
+     * 강의를 insert할때 사용하는 메서드입니다.
+     * @param model
+     * @throws Exception
+     */
     public void insertCourse(Model2Course model) throws Exception {
         try {
             checkDuplicateCourse(model);
@@ -200,10 +236,11 @@ public class Driver2SQL {
         String courseTime = model.getCourseTime();
         String sectionID = model.sectionID;
         String user_id = ApplicationProperty.model2User.getUser_id();
+        int group_color = ApplicationProperty.getBackgroundColor();
 
         try {
             String query = "INSERT INTO `knustudy`.`User_Course` " +
-                    "(courseCampus, courseGrade, courseID, courseName, courseProfessor, courseRoom, courseTime, sectionID, user_id,create_date) " +
+                    "(courseCampus, courseGrade, courseID, courseName, courseProfessor, courseRoom, courseTime, sectionID, user_id, group_color,create_date) " +
                     "VALUES ('" + courseCampus + "'," +
                     "'" + courseGrade + "'," +
                     "'" + courseID + "'," +
@@ -213,6 +250,7 @@ public class Driver2SQL {
                     "'" + courseTime + "'," +
                     "'" + sectionID + "'," +
                     "'" + user_id + "'," +
+                    "'" + group_color + "'," +
                     " now());";
 
             Log.d("Driver2SQL", query);
@@ -226,6 +264,12 @@ public class Driver2SQL {
         }
     }
 
+    /*********************************
+     * 로긴할때 사용하는 메서드입니다.
+     * @param model
+     * @return
+     * @throws Exception
+     */
     public boolean login(Model2User model) throws Exception {
         String TABLE_NAME = "User";
         String user_id = model.getUser_id();
@@ -250,6 +294,11 @@ public class Driver2SQL {
 
     }
 
+    /**********************************
+     * 유저를 생성하는 메서드입니다.
+     * @param model
+     * @throws Exception
+     */
     public void createUser(Model2User model) throws Exception {
         String TABLE_NAME = "User";
         String user_id = model.getUser_id();
@@ -266,7 +315,10 @@ public class Driver2SQL {
         }
     }
 
-
+    /**************************
+     * 커넥션을 리턴해주는 메서드입니다.
+     * @return
+     */
     private Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

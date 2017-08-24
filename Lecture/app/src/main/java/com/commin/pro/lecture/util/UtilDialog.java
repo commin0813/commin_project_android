@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.widget.EditText;
 import android.widget.Toast;
 
-/**
- * Created by user on 2016-03-21.
- */
 public class UtilDialog {
     public static void openError(Activity activity, String message, AlertDialog.OnClickListener ok_listener) {
         AlertDialog alertDialog = new AlertDialog.Builder(activity)

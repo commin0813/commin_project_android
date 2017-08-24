@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_custom_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/ll_custom_dialog"
+            android:layout_marginTop="20dp"
             android:background="@color/colorWhiteFA"
             android:orientation="vertical">
 
@@ -47,8 +47,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="20dp"
             android:layout_below="@id/ll_custom_dialog"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <View

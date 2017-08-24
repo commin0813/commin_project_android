@@ -81,7 +81,14 @@ public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
                     ArrayList<Model2Course> registered_list = ApplicationProperty.getRegisteredList();
                     if (registered_list.size() != 0) {
                         for (Model2Course model2 : registered_list) {
-                            //이곳에 시간표 중복 확인 메서드 넣어야 함
+                            /************************************
+                             * 시간표 중복을 확인하는 부분입니다.
+                             * 일단 등록하려는 강의모델과 등록되어있는
+                             * 강의모델 중에 요일을 먼저 비교해서 같은 요일인 모델들을 다시 확인합니다.
+                             * 이번엔 A1~14A까지의 이름을 서로 비교합니다.
+                             * 결과적으로 같은 요일인데 시간 이름까지 같으면 시간이 겹치므로
+                             * 디비에 저장하지않고 Exception을 발생시켜 다이얼로그를 띄우도록 합니다.
+                             * */
                             ArrayList<Model2LectureTime> time_items = UtilTime.getTimeValue(model.getCourseTime());
                             for (Model2LectureTime time_model : time_items) {
                                 if (time_model.getDay().equalsIgnoreCase(model2.getDay_name())) {
@@ -94,6 +101,8 @@ public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
                             }
                         }
                     }
+
+                    // 중복되는 시간이없으면, 디비에 insert시킵니다.
                     advisor.insertCourse(model);
                     advisor.setLectureData(ApplicationProperty.model2User.getUser_id());
                     registered_list.add(model); //등록 성공

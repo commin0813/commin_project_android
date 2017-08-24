@@ -24,6 +24,11 @@ import com.commin.pro.lecture.util.UtilShare;
 
 import java.util.ArrayList;
 
+/******************************
+ * 강의 스케쥴 화면 액티비티이며
+ * 그리드뷰로 되어진 이 액티비티에서는
+ * 만들어져있는 데이터를 가지고 화면에 표시하는 역할을 하는 액티비티입니다.
+ */
 public class Page2Lecture extends AppCompatActivity {
     private static final String LOG_TAG = "Page2Lecture";
 
@@ -74,8 +79,7 @@ public class Page2Lecture extends AppCompatActivity {
             startActivity(new Intent(Page2Lecture.this, Page2Login.class));
             finish();
         }else {
-
-
+            //만약 로그인이 안되어있을시에 다른 이벤트를 활성화시키고싶으면 이곳에 작성하면됩니다.
         }
     }
 
@@ -93,7 +97,27 @@ public class Page2Lecture extends AppCompatActivity {
                 startActivityForResult(new Intent(Page2Lecture.this, Page2LectureEdit.class), ApplicationProperty.REQUEST_CODE_FOR_LECTURE_EDIT);
             }
         });
-
+        /*********
+         *
+         * 강의 데이터가 있는 그리드뷰 영역을 클릭하였을때, 해당 강의 정보를 토스트로
+         * 띄우는것을 추가했습니다.
+         *
+         * ********/
+        gv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if(content_item == null && content_item.size() <= 0){
+                    return;
+                }
+                final Model2Course model =  content_item.get(position);
+                if(model.isData() && model.isLecture()){
+                    UtilDialog.showToast(Page2Lecture.this,model.getCourseName() + " , " + model.getCourseProfessor() + " , " + model.getCourseRoom());
+                }
+            }
+        });
+        /***********************
+         * 강의가있는 데이터 영역을 롱클릭하면 삭제를 할거냐고 물어보는 다이얼로그가 뜨게합니다.
+         */
         gv_content.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -102,7 +126,12 @@ public class Page2Lecture extends AppCompatActivity {
                 }
 
                final Model2Course model =  content_item.get(position);
-                if(model.isData()){
+                if(model.isData() && model.isLecture()){        /*****
+                                                                빈화면을 클릭했을 때 삭제 다이얼로그가
+                                                                뜬 이유는 Data필드인지만 비교했기때문입니다.
+                                                                model에 담겨있는 isLecture를 통해 강의 데이터가
+                                                                담겨있는 그리드인지 확인합니다.
+                                                                *****/
                     isLongClick = true;
                     UtilDialog.openCustomDialogConfirm(Page2Lecture.this, "삭제", "삭제 할래요?", "예", "아니오", new UtilCustomDialog.OnClickListener() {
                         @Override
@@ -147,12 +176,12 @@ public class Page2Lecture extends AppCompatActivity {
         gv_day = (GridView) findViewById(R.id.gv_day);
         gv_content = (GridView)findViewById(R.id.gv_content);
 
-        queryDataGrid();
+        queryDataGrid();//데이터를 불러옵니다.
     }
 
     private void queryDataGrid() {
-        day_item.clear();
-        content_item.clear();
+        day_item.clear(); // 월화수목금토일이 저장될 리스트
+        content_item.clear(); // 강의정보가 저장될 리스트
 
 
         adapter2GridDay = new Adapter2GridDay(Page2Lecture.this, R.layout.item_gird_day, day_item);
@@ -166,7 +195,7 @@ public class Page2Lecture extends AppCompatActivity {
 
         ArrayList<Model2Course> items = null;
         try{
-            advisor.setLectureData(ApplicationProperty.model2User.getUser_id());
+            advisor.setLectureData(ApplicationProperty.model2User.getUser_id());//데이터를 셋팅해놓습니다.
         }catch (Exception e){
             UtilDialog.openError(Page2Lecture.this, e.getMessage(), new DialogInterface.OnClickListener() {
                 @Override
@@ -200,6 +229,10 @@ public class Page2Lecture extends AppCompatActivity {
         int row_index = 0;
         int colum_index = 0;
         Model2Course model;
+
+        //이부분은 모르시면 전화로 설명드릴수있습니다.
+        //행과 열을 곱하면 전체 그리드 수가나오는데 그 그리드에 row_index 와 column_index를 이용하여
+        //아이디값을 매겨 추후에 관리할수있게 만드는 작업입니다.
         for (int i = 0; i < NumColum * NumRow; i++) {
             model = new Model2Course();
             model.setRow_index(row_index);
@@ -221,6 +254,10 @@ public class Page2Lecture extends AppCompatActivity {
             model.setId(row_index + "+" + colum_index);
 
             if (items != null) {
+                //items는 디비를 통해 등록된 수강정보들이 담겨있습니다.
+                // 만약 등록된게없으면 건너띄고 있다면 하나씩 아이디를 비교해서
+                // 모델을 치환시킵니다. 그러면 화면을 그릴때 그부분은 데이터가있어서
+                //화면을 그릴 수 있습니다.
                 for (Model2Course mo : items) {
                     if (model.getId().equals(mo.getId())) {
                         model = mo;
@@ -261,9 +298,6 @@ public class Page2Lecture extends AppCompatActivity {
         editor = UtilShare.getEditor(sharedPreferences);
     }
 
-
-
-
     private void setDeviceWidthHeight() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -274,7 +308,6 @@ public class Page2Lecture extends AppCompatActivity {
 
 
     private long backKeyPressedTime = 0;
-
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
