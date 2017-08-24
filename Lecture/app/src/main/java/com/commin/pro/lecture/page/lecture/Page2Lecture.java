@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -16,6 +18,7 @@ import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.page.lecture_edit.Page2LectureEdit;
 import com.commin.pro.lecture.page.lecture_search.Page2LectureSearch;
 import com.commin.pro.lecture.page.login.Page2Login;
+import com.commin.pro.lecture.util.UtilCustomDialog;
 import com.commin.pro.lecture.util.UtilDialog;
 import com.commin.pro.lecture.util.UtilShare;
 
@@ -31,7 +34,7 @@ public class Page2Lecture extends AppCompatActivity {
     private Adapter2GridContent adapter2GridContent;
 
     private ArrayList<String> day_item;
-    private ArrayList<Model2Course> content_item;
+    private ArrayList<Model2Course> content_item = null;
 
     private int device_width;
     private int device_height;
@@ -91,6 +94,49 @@ public class Page2Lecture extends AppCompatActivity {
             }
         });
 
+        gv_content.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if(content_item == null && content_item.size() <= 0){
+                    return false;
+                }
+
+               final Model2Course model =  content_item.get(position);
+                if(model.isData()){
+                    isLongClick = true;
+                    UtilDialog.openCustomDialogConfirm(Page2Lecture.this, "삭제", "삭제 할래요?", "예", "아니오", new UtilCustomDialog.OnClickListener() {
+                        @Override
+                        public void onClick() {
+                            try{
+                                advisor.deleteLectureData(model.getCourseID(),ApplicationProperty.model2User.getUser_id());
+                                queryDataGrid();
+                            }catch (Exception e){
+                                UtilDialog.openError(Page2Lecture.this, e.getMessage(), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        return;
+                                    }
+                                });
+                            }
+                        }
+                    }, new UtilCustomDialog.OnClickListener() {
+                        @Override
+                        public void onClick() {
+                            return;
+                        }
+                    });
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            isLongClick = false;
+                        }
+                    };
+                    Handler handler = new Handler();
+                    handler.postDelayed(runnable, 500);
+                }
+                return true;
+            }
+        });
     }
 
     private void createGUI() {
@@ -120,7 +166,7 @@ public class Page2Lecture extends AppCompatActivity {
 
         ArrayList<Model2Course> items = null;
         try{
-            advisor.getLectureData(ApplicationProperty.model2User.getUser_id());
+            advisor.setLectureData(ApplicationProperty.model2User.getUser_id());
         }catch (Exception e){
             UtilDialog.openError(Page2Lecture.this, e.getMessage(), new DialogInterface.OnClickListener() {
                 @Override

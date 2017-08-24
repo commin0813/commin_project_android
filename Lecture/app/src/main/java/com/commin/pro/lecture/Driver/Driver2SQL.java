@@ -19,9 +19,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * Created by user on 2017-08-16.
- */
 public class Driver2SQL {
     class MyQuery extends AsyncTask<String, Void, ResultSet> {
 
@@ -31,6 +28,10 @@ public class Driver2SQL {
             try {
                 Driver2SQL driver2SQL = new Driver2SQL();
                 Connection conn = driver2SQL.getConnection();
+                if(conn ==null){
+                    Log.d("","");
+                    throw new DBException("DB서버와의 연결이 좋지않습니다. 다시 시도해주세요");
+                }
                 Statement stmt = conn.createStatement();
                 resultSet = stmt.executeQuery(strings[0]);
 
@@ -47,7 +48,7 @@ public class Driver2SQL {
 
     }
 
-    class MyInsert extends AsyncTask<String, Void, String> {
+    class MyUpdate extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -68,6 +69,20 @@ public class Driver2SQL {
         @Override
         protected void onPostExecute(String result) {
             return;
+        }
+    }
+
+    public void deleteLectureData(String course_id,String user_id) throws Exception{
+        try{
+            String query = "DELETE FROM `knustudy`.`User_Course`  WHERE courseID = '" + course_id + "' AND user_id = '" + user_id + "';";
+            MyUpdate delete = new MyUpdate();
+            String str = delete.execute(query).get();
+            if (str != null) {
+                throw new DBException(str);
+            }
+
+        }catch (Exception e){
+            throw e;
         }
     }
 
@@ -143,8 +158,6 @@ public class Driver2SQL {
                 }
             }
             ApplicationProperty.setRegisteredList(registered_list);
-            Log.d("Driver2SQL", query);
-
         } catch (Exception e) {
             throw e;
         }
@@ -203,7 +216,7 @@ public class Driver2SQL {
                     " now());";
 
             Log.d("Driver2SQL", query);
-            MyInsert insert = new MyInsert();
+            MyUpdate insert = new MyUpdate();
             String str = insert.execute(query).get();
             if (str != null) {
                 throw new DBException(str);
@@ -243,7 +256,7 @@ public class Driver2SQL {
         String user_password = model.getUser_password();
         try {
             String query = "INSERT INTO `knustudy`.`User` (`user_id`, `user_password`, `create_date`) VALUES ('" + user_id + "', '" + user_password + "', now());";
-            MyInsert insert = new MyInsert();
+            MyUpdate insert = new MyUpdate();
             String str = insert.execute(query).get();
             if (str != null) {
                 throw new DBException(str);
@@ -259,6 +272,11 @@ public class Driver2SQL {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://my5008.gabiadb.com/knustudy", "hopekkt", "hopekkt123");
             Log.d("Driver2SQL", conn + "");
+            try{
+                new Thread().sleep(10);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
             return conn;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -269,97 +287,6 @@ public class Driver2SQL {
         }
     }
 
-
-//    public static boolean confirmDuplication(String column, String target) throws Exception {
-//        String result = "";
-//        String error = "";
-//        boolean isDuplication = false;
-//        Map<String, String> response_params = new LinkedHashMap<String, String>();
-//        try {
-//
-//            String query = "SELECT " + column + " FROM " + TABLA_NAME + " WHERE " + column + " = '" + target + "';";
-//            Driver2SQL db = new Driver2SQL();
-//            db.getConnection();
-//            Statement stmt = db.myConn.createStatement();
-//            ResultSet resultSet = stmt.executeQuery(query);
-//
-//            if (resultSet.next()) {
-//                isDuplication = true;
-//            } else {
-//                isDuplication = false;
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            throw e;
-//        }
-//
-//        return isDuplication;
-//    }
-//
-//
-//    public static ResultSet query(String sql) throws Exception {
-//        try {
-//            Driver2SQL db = new Driver2SQL();
-//            db.getConnection();
-//            Statement stmt = db.myConn.createStatement();
-//
-//            return stmt.executeQuery(sql);
-//
-//        } catch (Exception e) {
-//            throw e;
-//        }
-//    }
-//
-//    public static String insert(LinkedHashMap<String, String> sql_map) throws Exception {
-//        String result = "";
-//        String error = "";
-//        boolean isSuccess = false;
-//        Map<String, String> response_params = new LinkedHashMap<String, String>();
-//        try {
-//
-//            String sql_header = "insert into " + TABLA_NAME + " (create_time,";
-//            String sql_footer = "values (now(),";
-//
-//            Iterator<String> keys = sql_map.keySet().iterator();
-//
-//            while (keys.hasNext()) {
-//                String key = keys.next();
-//                if (key.startsWith("att")) {
-//                    sql_header += sql_map.get(key);
-//                } else {
-//                    sql_footer += sql_map.get(key);
-//                }
-//            }
-//            sql_header += ") ";
-//
-//            sql_footer += ");";
-//            String sql = sql_header + sql_footer;
-//
-//            System.out.println(sql);
-//
-//            Driver2SQL db = new Driver2SQL();
-//            db.getConnection();
-//            Statement stmt = db.myConn.createStatement();
-//            try {
-//                stmt.executeUpdate(sql);
-//                isSuccess = true;
-//            } catch (Exception e) {
-//                isSuccess = false;
-//                error = e.getMessage();
-//            } finally {
-//                response_params.put("action", "createCustomerResult");
-//                response_params.put("result", String.valueOf(isSuccess));
-//                response_params.put("error", String.valueOf(error));
-//
-//                System.out.println(result);
-//            }
-//        } catch (Exception e) {
-//            throw e;
-//        }
-//
-//        return result;
-//    }
 
 
 }

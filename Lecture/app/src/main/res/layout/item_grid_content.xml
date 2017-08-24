@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/tv_item_start_time"
+        android:id="@+id/tv_item_start"
         android:layout_width="match_parent"
         android:layout_height="12dp"
         android:ellipsize="marquee"
         android:gravity="center_horizontal"
         android:singleLine="true"
-        android:textSize="10sp" />
+        android:textSize="9sp" />
 
     <TextView
         android:id="@+id/tv_item_description"
@@ -20,7 +20,7 @@
         android:textSize="9sp" />
 
     <TextView
-        android:id="@+id/tv_item_end_time"
+        android:id="@+id/tv_item_end"
         android:layout_width="match_parent"
         android:layout_height="12dp"
         android:ellipsize="marquee"

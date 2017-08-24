@@ -11,7 +11,7 @@
         android:id="@+id/ll_lecture_top"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/colorGrayD3"
+        android:background="@color/colorDarkBlue"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/app_name"
+            android:text="KNU 강의 시간표"
+            android:textColor="@color/colorWhiteFA"
             android:textSize="20sp" />
 
         <LinearLayout

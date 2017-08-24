@@ -6,6 +6,15 @@ import com.commin.pro.lecture.model.Model2Course;
 import com.commin.pro.lecture.model.Model2User;
 
 public class Page2LectureSearchAdvisor{
+    public void setLectureData(String user_id) throws Exception{
+        try{
+            Driver2SQL driver = new Driver2SQL();
+            driver.setLectureData(user_id);
+            return;
+        }catch (Exception e){
+            throw e;
+        }
+    }
     public void insertCourse(Model2Course item) throws Exception{
         try{
             Model2Course model = item;

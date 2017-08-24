@@ -58,6 +58,8 @@ public class Page2LectureEdit extends Activity {
                         if(!sharedPreferences.getBoolean(UtilShare.KEY_VALUE_ISCHECKED,true)){
                             editor.clear();
                         }
+
+                        editor.clear();
                         setResult(ApplicationProperty.RESULT_LOGOUT,null);
                         finish();
                     }

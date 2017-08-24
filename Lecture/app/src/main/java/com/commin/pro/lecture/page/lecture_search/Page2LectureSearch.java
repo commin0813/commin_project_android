@@ -1,36 +1,23 @@
 package com.commin.pro.lecture.page.lecture_search;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
-import com.commin.pro.lecture.util.ProgressGenerator;
 import com.commin.pro.lecture.util.UtilCustomDialog;
 import com.commin.pro.lecture.util.UtilDialog;
-import com.commin.pro.lecture.widget.DialogProgress;
-import com.dd.processbutton.iml.ActionProcessButton;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,7 +25,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Page2LectureSearch extends AppCompatActivity {
@@ -68,16 +54,7 @@ public class Page2LectureSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-
-                    btn_query_data.setEnabled(false);
-                    if (courses == null) {
-                        courses = new GetSiteInfo(Page2LectureSearch.this).execute().get();
-                    }
-
-                    if (courses != null) {
-                        createData(courses);
-                        btn_query_data.setEnabled(true);
-                    }
+                    startGetData();
 
                 } catch (Exception e) {
                     UtilDialog.openError(Page2LectureSearch.this, e.getMessage(), new DialogInterface.OnClickListener() {
@@ -99,6 +76,20 @@ public class Page2LectureSearch extends AppCompatActivity {
         lst_search_result.setDivider(null);
 
 
+    }
+
+    private void startGetData() throws Exception{
+        try{
+            if (courses == null) {
+                courses = new GetSiteInfo(Page2LectureSearch.this).execute().get();
+            }
+
+            if (courses != null) {
+                createData(courses);
+            }
+        }catch (Exception e){
+            throw e;
+        }
     }
 
     private ArrayList<Model2Course> getContainItem(ArrayList<Model2Course> courses, String search_text) {
@@ -237,6 +228,9 @@ public class Page2LectureSearch extends AppCompatActivity {
         listView.requestLayout();
     }
 
+    public void back(View view) {
+        onBackPressed();
+    }
 
     class GetSiteInfo extends AsyncTask<Integer, String, ArrayList<Model2Course>> {
         private Context context;
@@ -254,6 +248,8 @@ public class Page2LectureSearch extends AppCompatActivity {
 
 
             try {
+
+
                 Document document = Jsoup.connect(url).get();
                 tableRows = document.select("#viewPlans > table > tbody > tr");
 
@@ -261,17 +257,16 @@ public class Page2LectureSearch extends AppCompatActivity {
 
 
                 for (Element element : tableRows) {
+                    publishProgress("a");
+
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
-
                     Elements tableColumn = element.children();
                     int column_count = 1;//테이블 각 항목에따라 모델에 set해야하는 부분이 다르므로 구분하기위해 쓰는 변수
                     Model2Course model = new Model2Course();
-
 
                     for (Element element1 : tableColumn) {
                         if (i == 0) {
@@ -373,7 +368,6 @@ public class Page2LectureSearch extends AppCompatActivity {
             return course_list;
         }
 
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -382,6 +376,7 @@ public class Page2LectureSearch extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(String... values) {
 
+            Log.d("update","update!");
         }
 
         @Override

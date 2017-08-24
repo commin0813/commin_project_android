@@ -2,31 +2,33 @@ package com.commin.pro.lecture.page.lecture_search;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import android.widget.TextView;
+
 
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
+import com.commin.pro.lecture.model.Model2LectureTime;
 import com.commin.pro.lecture.page.ApplicationProperty;
+import com.commin.pro.lecture.util.DBException;
+
 import com.commin.pro.lecture.util.UtilDialog;
+import com.commin.pro.lecture.util.UtilTime;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 2017-08-18.
- */
+
 public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
     private Context context;
     private int resource;
     private ArrayList<Model2Course> items;
     private Page2LectureSearchAdvisor advisor = null;
-
 
 
     public ArrayAdapter2LectureSearch(Context context, int resource, ArrayList<Model2Course> items) {
@@ -49,7 +51,7 @@ public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
     public View getView(int position, final View convertView, ViewGroup parent) {
         View view = convertView;
         final Model2Course model = items.get(position);
-        if(view  == null){
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(resource, null);
 
@@ -73,31 +75,39 @@ public class ArrayAdapter2LectureSearch extends ArrayAdapter<Model2Course> {
         viewHolder.btn_item_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     advisor = new Page2LectureSearchAdvisor();
-                    advisor.insertCourse(model);
 
                     ArrayList<Model2Course> registered_list = ApplicationProperty.getRegisteredList();
-                    if(registered_list.size() != 0){
-                        for(Model2Course model : registered_list){
+                    if (registered_list.size() != 0) {
+                        for (Model2Course model2 : registered_list) {
                             //이곳에 시간표 중복 확인 메서드 넣어야 함
+                            ArrayList<Model2LectureTime> time_items = UtilTime.getTimeValue(model.getCourseTime());
+                            for (Model2LectureTime time_model : time_items) {
+                                if (time_model.getDay().equalsIgnoreCase(model2.getDay_name())) {
+                                    for (String lecture_time : time_model.getLecture_times()) {
+                                        if (lecture_time.equalsIgnoreCase(model2.getTime_name())) {
+                                            throw new DBException("시간이 중복 됩니다.");
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
-
+                    advisor.insertCourse(model);
+                    advisor.setLectureData(ApplicationProperty.model2User.getUser_id());
                     registered_list.add(model); //등록 성공
 
-                    Log.d("log", "");
-
-                    UtilDialog.openDialog((Page2LectureSearch)context,"등록 하였습니다.", new DialogInterface.OnClickListener() {
+                    UtilDialog.openDialog((Page2LectureSearch) context, "등록 하였습니다.", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             return;
                         }
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
-                    UtilDialog.openError((Page2LectureSearch)context, e.getMessage(), new DialogInterface.OnClickListener() {
+                    UtilDialog.openError((Page2LectureSearch) context, e.getMessage(), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             return;

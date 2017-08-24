@@ -1,13 +1,7 @@
 package com.commin.pro.lecture.model;
 
-import android.util.Log;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
-/**
- * Created by user on 2017-08-17.
- */
 public class Model2Course implements Serializable {
     public final String sectionID = "20172";
     private String courseUniverse = null;
@@ -43,14 +37,6 @@ public class Model2Course implements Serializable {
     private String day_name;
     private int group_id;
     private String name_value;
-
-
-
-
-
-    public Model2Course() {
-
-    }
 
     public String getCourseUniverse() {
         return courseUniverse;

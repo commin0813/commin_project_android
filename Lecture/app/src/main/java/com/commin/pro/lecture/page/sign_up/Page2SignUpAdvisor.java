@@ -3,9 +3,6 @@ package com.commin.pro.lecture.page.sign_up;
 import com.commin.pro.lecture.Driver.Driver2SQL;
 import com.commin.pro.lecture.model.Model2User;
 
-/**
- * Created by user on 2017-08-16.
- */
 public class Page2SignUpAdvisor {
     public String cretaeUser(String user_id,String user_password) throws Exception{
         try{

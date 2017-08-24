@@ -1,19 +1,15 @@
 package com.commin.pro.lecture.page.sign_up;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import com.commin.pro.lecture.R;
-import com.commin.pro.lecture.model.Model2User;
 import com.commin.pro.lecture.page.ApplicationProperty;
-import com.commin.pro.lecture.util.UtilCustomDialog;
 import com.commin.pro.lecture.util.UtilDialog;
 
-import java.util.ArrayList;
 
 public class Page2SignUp extends AppCompatActivity {
 
@@ -27,6 +23,10 @@ public class Page2SignUp extends AppCompatActivity {
         init();
 
 
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 
     private void init() {

@@ -11,15 +11,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name = "SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item name = "android:windowBackground">@drawable/shinhan_start</item>
+    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@drawable/logo</item>
     </style>
 
-    <style name="Custom" parent="android:Theme.DeviceDefault.Dialog">
-        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
-        <item name="DialogTitleText">Loading Data…</item>
-        <item name="DialogSpotColor">@android:color/holo_orange_dark</item>
-        <item name="DialogSpotCount">4</item>
-    </style>
+
 
 </resources>

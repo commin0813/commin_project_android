@@ -2,7 +2,6 @@ package com.commin.pro.lecture.page.lecture;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
 import com.commin.pro.lecture.util.UtilCheck;
-import com.commin.pro.lecture.util.UtilShare;
 
 
 import java.util.ArrayList;
@@ -38,8 +36,8 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
 
     class ViewHolder {
         TextView tv_item_description = null;
-        TextView tv_item_start_time = null;
-        TextView tv_item_end_time = null;
+        TextView tv_item_start = null;
+        TextView tv_item_end = null;
     }
 
     @Override
@@ -63,84 +61,21 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
 
             //자원 할당.
             viewHolder.tv_item_description = (TextView) view.findViewById(R.id.tv_item_description);
-            viewHolder.tv_item_start_time = (TextView) view.findViewById(R.id.tv_item_start_time);
-            viewHolder.tv_item_end_time = (TextView) view.findViewById(R.id.tv_item_end_time);
-            viewHolder.tv_item_end_time.setSelected(true);
-            viewHolder.tv_item_start_time.setSelected(true);
+            viewHolder.tv_item_start = (TextView) view.findViewById(R.id.tv_item_start);
+            viewHolder.tv_item_end = (TextView) view.findViewById(R.id.tv_item_end);
+            viewHolder.tv_item_end.setSelected(true);
+            viewHolder.tv_item_start.setSelected(true);
 
             view.setTag(viewHolder);
         }
 
         final ViewHolder viewHolder = (ViewHolder) view.getTag();
 
-//        if (model.isData() == true) {//시간영역인지 작업영역인지
-//            if (model.isMemo()) {//메모데이터가 담긴 모델인지 아닌지
-//                viewHolder.tv_item_description.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-//                viewHolder.tv_item_description.setTextSize(12.0f);
-//                viewHolder.tv_item_description.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-//                viewHolder.tv_item_description.setSingleLine();
-//                viewHolder.tv_item_description.setSelected(true);
-//                view.setBackgroundColor(context.getResources().getColor(R.color.colorGrayD4));
-//
-//                viewHolder.tv_item_description.setText(model.getMemo_title());
-//            } else if (model.isEvents()) {//강의데이터가 담긴 모델인지 아닌지
-//                viewHolder.tv_item_start_time.setTextColor(context.getResources().getColor(R.color.colorWhiteFA));
-//                viewHolder.tv_item_description.setTextColor(context.getResources().getColor(R.color.colorWhiteFA));
-//                viewHolder.tv_item_end_time.setTextColor(context.getResources().getColor(R.color.colorWhiteFA));
-//                if (model.getPosition().equals("top")) {
-//                    if (UtilCheck.checkPeriod(model.getStart_time(), model.getEnd_time()) <= 1) {
-//                        viewHolder.tv_item_start_time.setText(UtilCheck.checkTime(model.getStart_time()) + " " + model.getStart_time() + " : 00");
-//                        viewHolder.tv_item_description.setText(
-//                                model.getClass_name() + "\n" +
-//                                        model.getClassroom_name() + "\n");
-//                        viewHolder.tv_item_end_time.setText(UtilCheck.checkTime(model.getEnd_time()) + " " + model.getEnd_time() + " : 00" + "\n");
-//                    } else {
-//                        viewHolder.tv_item_start_time.setText(UtilCheck.checkTime(model.getStart_time()) + " " + model.getStart_time() + " : 00");
-//                        viewHolder.tv_item_description.setText(model.getClass_name() + "\n" +
-//                                model.getClassroom_name() + "\n"
-//
-//                        );
-//                    }
-//                }
-//                if (model.getPosition().equals("bottom")) {
-//                    viewHolder.tv_item_description.setText(model.getProfessor_name());
-//                    viewHolder.tv_item_end_time.setText(UtilCheck.checkTime(model.getEnd_time()) + " " + model.getEnd_time() + " : 00" + "\n");
-//                }
-//
-//                switch (UtilCheck.checkDay(model.getId())) {//이 영역은 월 화 수 목 금 토 일 영역의 바탕 색을 지정.
-//                    case "월":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteBlue));
-//                        break;
-//                    case "화":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorBrown));
-//                        break;
-//                    case "수":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorDarkOrange));
-//                        break;
-//                    case "목":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorRed36));
-//                        break;
-//                    case "금":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteBlue));
-//                        break;
-//                    case "토":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorBrown));
-//                        break;
-//                    case "일":
-//                        view.setBackgroundColor(context.getResources().getColor(R.color.colorDarkOrange));
-//                        break;
-//                }
-//
-//            }
-//        } else {
-//
-//
-//            viewHolder.tv_item_start_time.setText(model.getName_value());
-//        }
         if (model.isData() == true){
             if(model.isLecture()){
-                viewHolder.tv_item_start_time.setText(model.getCourseName());
-                viewHolder.tv_item_description.setText(model.getId());
+                viewHolder.tv_item_start.setText(model.getCourseName() + "");
+                viewHolder.tv_item_description.setText(model.getCourseProfessor() + "");
+                viewHolder.tv_item_end.setText(model.getCourseRoom() + "");
 
                 switch (UtilCheck.checkDay(model.getId())) {//이 영역은 월 화 수 목 금 토 일 영역의 바탕 색을 지정.
                     case "월":
@@ -167,14 +102,16 @@ public class Adapter2GridContent extends ArrayAdapter<Model2Course> {
                 }
 
             }else {
-                viewHolder.tv_item_start_time.setText(" .  ");
+                viewHolder.tv_item_start.setText(" .  ");
                 viewHolder.tv_item_description.setText("    ");
+                viewHolder.tv_item_end.setText("    ");
                 view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteFA));
             }
         }else {
             String[] arr_string_lecture_time = context.getResources().getStringArray(R.array.time_title);
-            viewHolder.tv_item_start_time.setText(arr_string_lecture_time[UtilCheck.checkTimeNameNumber(model.getId())]);
+            viewHolder.tv_item_start.setText(arr_string_lecture_time[UtilCheck.checkTimeNameNumber(model.getId())]);
             viewHolder.tv_item_description.setText(model.getName_value());
+            viewHolder.tv_item_end.setText("    ");
             view.setBackgroundColor(context.getResources().getColor(R.color.colorWhiteFA));
         }
 
