@@ -25,4 +25,7 @@
     <color name="comminOrange">#FF6F29</color>
     <color name="comminOrangeWhite">#ff8000</color>
     <color name="comminOrangeBlack">#CD6830</color>
+
+    <!-- shinhan -->
+    <color name="shinhanNaby">#17181d</color>
 </resources>
