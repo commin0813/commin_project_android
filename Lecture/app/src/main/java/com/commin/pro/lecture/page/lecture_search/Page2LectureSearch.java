@@ -460,7 +460,7 @@ public class Page2LectureSearch extends AppCompatActivity {
                                 String str = model.getCourseNote();
                                 if (str != null && str.contains("상주")) {
                                     model.setCourseCampus("상주캠퍼스");
-                                } else if (str != null) {
+                                } else {
                                     model.setCourseCampus("대구캠퍼스");
                                 }
                                 //////////// 학과이름을 고통적으로 추가해놓습니다.
