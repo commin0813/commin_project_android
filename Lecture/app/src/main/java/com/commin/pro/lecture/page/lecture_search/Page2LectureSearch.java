@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 
 import com.commin.pro.lecture.R;
 import com.commin.pro.lecture.model.Model2Course;
+import com.commin.pro.lecture.page.ApplicationProperty;
 import com.commin.pro.lecture.util.UtilDialog;
 
 import org.jsoup.Jsoup;
@@ -27,12 +28,12 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class Page2LectureSearch extends AppCompatActivity {
     public static String LOG_TAG = "Page2LectureSearch";
-    private static String url = "http://my.knu.ac.kr/stpo/stpo/cour/listLectPln/list.action?search_open_yr_trm=20172";
-    private String section_id = "search_open_yr_trm=20172";
+
 
     private RadioGroup rdg_search, rdg_campus;
     private EditText ed_search_word;
@@ -44,6 +45,8 @@ public class Page2LectureSearch extends AppCompatActivity {
 
     private Handler mHandler;
     private ProgressDialog mProgressDialog;
+
+
 
 
     @Override
@@ -95,6 +98,7 @@ public class Page2LectureSearch extends AppCompatActivity {
          * 조회가 끝나는 시점과 데이터 셋팅이 끝나는 시점에 다이얼로그를 dismiss 시켜줍니다.
          * ********/
 
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -108,6 +112,10 @@ public class Page2LectureSearch extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
+                        if(ApplicationProperty.LECTURE_TEMP_LIST != null){
+                            courses = ApplicationProperty.LECTURE_TEMP_LIST;
+                        }
+
                         if (courses == null) { // courses 에 데이터가 없으면 크롤링을 시작합니다. 만약 데이터가있으면 있는 데이터로 바로 셋팅을 합니다.
                             courses = new GetSiteInfo(Page2LectureSearch.this).execute().get();
                         }
@@ -136,6 +144,7 @@ public class Page2LectureSearch extends AppCompatActivity {
      * 전역변수로 되어있는 courses는 항상 최초의 크롤링한 데이터를 가지고있습니다.
      * 인자로 받은 courses는 검색조건에따라 계속해서 값이 변하고 그걸 setData()메서드로 보내서
      * ListView에 넣는것입니다.
+     *
      * @param courses
      * @throws Exception
      */
@@ -201,6 +210,7 @@ public class Page2LectureSearch extends AppCompatActivity {
     /*********************************
      * 만약 검색조건에 사용자가 입력한 검색키워드가 있다면
      * 검색 키워드가 포함된 데이터를 찾아서 리스트형식으로 리턴해주는 메서드입니다.
+     *
      * @param courses
      * @param search_text
      * @return
@@ -256,6 +266,7 @@ public class Page2LectureSearch extends AppCompatActivity {
     /*************************
      * 검색조건등으로 만들어진 데이터를
      * ListView에 뿌리는 메서드입니다.
+     *
      * @param dataList
      * @throws Exception
      */
@@ -283,6 +294,7 @@ public class Page2LectureSearch extends AppCompatActivity {
     /**************************
      * 리스트뷰가 화면을 그릴때, 리스트뷰 자식 뷰들의 길이를 구해서 리스트뷰에게알려주는 메서드입니다.
      * 이렇게하면 리스트뷰가 더 깔끔하게 잘 나옵니다.
+     *
      * @param listView
      */
     public void setListViewHeightBasedOnChildren(ListView listView) {
@@ -312,6 +324,10 @@ public class Page2LectureSearch extends AppCompatActivity {
     }
 
 
+    private static String url2 = "http://my.knu.ac.kr/stpo/stpo/cour/listLectPln/list.action?search_open_yr_trm=20172&sub=1F&search_open_crse_cde=1F01";
+    private String section_id = "search_open_yr_trm=20172";
+
+
     /*****************************
      * 안드로이드에서는 메인 쓰레드안에서 네트워크를 통한 서비스를 할 수 없도록 해놨습니다.
      * 때문에 다른 쓰레드안에서 Network 작업을 해야하는데요
@@ -319,6 +335,7 @@ public class Page2LectureSearch extends AppCompatActivity {
      */
     class GetSiteInfo extends AsyncTask<Integer, Integer, ArrayList<Model2Course>> {
         private Context context;
+
         public GetSiteInfo(Context context) {
             this.context = context;
         }
@@ -326,107 +343,140 @@ public class Page2LectureSearch extends AppCompatActivity {
         @Override
         protected ArrayList<Model2Course> doInBackground(Integer... integers) {
             Elements tableRows = null;
+            Elements options = null;
+
             ArrayList<Model2Course> course_list = new ArrayList<Model2Course>();// 테이블 Row데이터를 Model에담아 리스트에 넣는다.
             try {
-
-                Document document = Jsoup.connect(url).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
-                tableRows = document.select("#viewPlans > table > tbody > tr"); // html 태그의 아이디가 viewPlans인 태그 안에 table row 데이터를 선택해서 Elements 로 받아옵니다.
-                int i = 0;// 테이블의 첫번째 Row는 받지않기위해서 쓰는 변수
-                for (Element element : tableRows) {
-                    Elements tableColumn = element.children();
-                    int column_count = 1;//테이블 각 항목에따라 모델에 set해야하는 부분이 다르므로 구분하기위해 쓰는 변수
-                    Model2Course model = new Model2Course();
-                    for (Element element1 : tableColumn) {
-                        if (i == 0) {
-                            i = 1; //첫번째 행은 건너띄고자 만들었습니다. (제목등이 들어있습니다.)
-                            break;
-                        }
-                        String text = element1.text();
-                        if (text.equals("")) {
-                            Log.d(LOG_TAG, "No Data ::: " + column_count);
-                            column_count++;
-                            continue;
-                        }
-                        switch (column_count) {//컬럼을 분기하여 model에다가 데이터를 넣습니다.
-                            case 1: {//학년
-                                model.setCourseGrade(text);
-                                break;
-                            }
-                            case 2: {//구분 **
-                                model.setCourseDivide(text);
-                                break;
-                            }
-                            case 3: {//과목아이디 **
-                                model.setCourseID(text);
-                                break;
-                            }
-                            case 4: {//과목이름 **
-                                model.setCourseName(text);
-                                break;
-                            }
-                            case 5: {//학점
-                                model.setCourseCredit((text));
-                                break;
-                            }
-                            case 6: {//이론
-                                model.setCourseTheory((text));
-                                break;
-                            }
-                            case 7: {//실습
-                                model.setCoursePractice(text);
-                                break;
-                            }
-                            case 8: {//교수이름 **
-                                model.setCourseProfessor(text);
-                                break;
-                            }
-                            case 9: {//강의시간 **
-                                model.setCourseTime(text);
-                                break;
-                            }
-                            case 10: {//강의실 **
-                                model.setCourseRoom(text);
-                                break;
-                            }
-                            case 11: {//정원
-                                model.setCourseLimit((text));
-                                break;
-                            }
-                            case 12: {//수강신청한인원
-                                model.setCoursePeople((text));
-                                break;
-                            }
-                            case 13: {//패케지 인원
-                                model.setCoursePackage((text));
-                                break;
-                            }
-                            case 14: {//패케지 가능여부
-                                model.setCoursePackageEnabled(text);
-                                break;
-                            }
-                            case 15: {//비고 **
-                                model.setCourseNote(text);
-                                break;
-                            }
-                        }
-                        column_count++;
+                Document document = Jsoup.connect(url2).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
+                options = document.select("div > .search > #sub02 > option");
+                ArrayList<String> options_value = new ArrayList<>();
+                for (Element element : options) {
+                    String value = element.attr("value");
+                    if (value.equals("")) {
+                        continue;
                     }
-                    if (i == 1) {
-                        i = 2;
-                    } else {
-                        String str = model.getCourseNote();
-                        if (str != null && str.contains("상주")) {
-                            model.setCourseCampus("상주캠퍼스");
-                        } else if (str != null) {
-                            model.setCourseCampus("대구캠퍼스");
-                        }
-                        i++;
-                        course_list.add(model);
-                    }
-
+                    options_value.add(value);
                 }
 
+                /////////////// 추가 수정된 부분, 각 검색조건으로 크롤링하여 courses에 추가합니다.
+                for (String sub : options_value) {
+                    if (sub.equals("")) {
+                        continue;
+                    }
+                    HashMap<String, String> map = ApplicationProperty.getDepartMentHashMap();
+
+                    for (String key : map.keySet()) {
+                        if (!key.startsWith(sub)) {
+                            continue;
+                        }
+                        ///////////// sub : 대학명 key : 학과명
+                        String url = "http://my.knu.ac.kr/stpo/stpo/cour/listLectPln/list.action?search_open_yr_trm=20172&sub=" + sub + "&search_open_crse_cde=" + key;
+                        Document document2 = Jsoup.connect(url).get();
+                        tableRows = document2.select("#viewPlans > table > tbody > tr"); // html 태그의 아이디가 viewPlans인 태그 안에 table row 데이터를 선택해서 Elements 로 받아옵니다.
+                        int i = 0;// 테이블의 첫번째 Row는 받지않기위해서 쓰는 변수
+
+                        for (Element element : tableRows) {
+                            Elements tableColumn = element.children();
+                            int column_count = 1;//테이블 각 항목에따라 모델에 set해야하는 부분이 다르므로 구분하기위해 쓰는 변수
+                            Model2Course model = new Model2Course();
+                            for (Element element1 : tableColumn) {
+                                if (i == 0) {
+                                    i = 1; //첫번째 행은 건너띄고자 만들었습니다. (제목등이 들어있습니다.)
+                                    break;
+                                }
+                                String text = element1.text();
+                                if (text.equals("")) {
+                                    Log.d(LOG_TAG, "No Data ::: " + column_count);
+                                    column_count++;
+                                    continue;
+                                }
+                                switch (column_count) {//컬럼을 분기하여 model에다가 데이터를 넣습니다.
+                                    case 1: {//학년
+                                        model.setCourseGrade(text);
+                                        break;
+                                    }
+                                    case 2: {//구분 **
+                                        model.setCourseDivide(text);
+                                        break;
+                                    }
+                                    case 3: {//과목아이디 **
+                                        model.setCourseID(text);
+                                        break;
+                                    }
+                                    case 4: {//과목이름 **
+                                        model.setCourseName(text);
+                                        break;
+                                    }
+                                    case 5: {//학점
+                                        model.setCourseCredit((text));
+                                        break;
+                                    }
+                                    case 6: {//이론
+                                        model.setCourseTheory((text));
+                                        break;
+                                    }
+                                    case 7: {//실습
+                                        model.setCoursePractice(text);
+                                        break;
+                                    }
+                                    case 8: {//교수이름 **
+                                        model.setCourseProfessor(text);
+                                        break;
+                                    }
+                                    case 9: {//강의시간 **
+                                        model.setCourseTime(text);
+                                        break;
+                                    }
+                                    case 10: {//강의실 **
+                                        model.setCourseRoom(text);
+                                        break;
+                                    }
+                                    case 11: {//정원
+                                        model.setCourseLimit((text));
+                                        break;
+                                    }
+                                    case 12: {//수강신청한인원
+                                        model.setCoursePeople((text));
+                                        break;
+                                    }
+                                    case 13: {//패케지 인원
+                                        model.setCoursePackage((text));
+                                        break;
+                                    }
+                                    case 14: {//패케지 가능여부
+                                        model.setCoursePackageEnabled(text);
+                                        break;
+                                    }
+                                    case 15: {//비고 **
+                                        model.setCourseNote(text);
+                                        break;
+                                    }
+                                }
+                                column_count++;
+                            }
+                            if (i == 1) {
+                                i = 2;
+                            } else {
+                                String str = model.getCourseNote();
+                                if (str != null && str.contains("상주")) {
+                                    model.setCourseCampus("상주캠퍼스");
+                                } else if (str != null) {
+                                    model.setCourseCampus("대구캠퍼스");
+                                }
+                                //////////// 학과이름을 고통적으로 추가해놓습니다.
+                                model.setCourseMajor(map.get(key));
+                                i++;
+                                course_list.add(model);
+                            }
+
+                        }
+
+                    }
+                }
+
+
                 Log.d(LOG_TAG, "Complete Data List ::: " + course_list.size());
+                ApplicationProperty.LECTURE_TEMP_LIST = course_list;
 
             } catch (IOException e) {
                 e.printStackTrace();
