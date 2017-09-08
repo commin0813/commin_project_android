@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDarkBlue"
     tools:context="com.commin.pro.gangwon.page.home.Page2Home">
     <!-- main -->
     <LinearLayout
@@ -12,28 +13,210 @@
         <!-- TOP -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
+            android:background="@color/backBack84"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            >
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="강원도"
+                android:textColor="@color/colorWhiteFA"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
         <!-- BODY -->
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/home_selective_margin"
+            android:layout_marginLeft="@dimen/home_common_margin"
+            android:layout_marginRight="@dimen/home_common_margin"
+            android:layout_marginTop="@dimen/home_common_margin"
+            android:layout_weight="2"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/home_selective_margin"
+                android:layout_weight="1"
+                android:background="@color/colorWhiteFA">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/home_selective_margin"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/home_selective_margin"
+            android:layout_marginLeft="@dimen/home_common_margin"
+            android:layout_marginRight="@dimen/home_common_margin"
+            android:layout_marginTop="@dimen/home_selective_margin"
+            android:layout_weight="1.1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/home_selective_margin"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/home_selective_margin"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/home_selective_margin"
+                    android:layout_weight="1"
+                    android:background="@color/colorWhiteFA"></LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/home_common_margin"
+            android:layout_marginLeft="@dimen/home_common_margin"
+            android:layout_marginRight="@dimen/home_common_margin"
+            android:layout_marginTop="@dimen/home_selective_margin"
+            android:layout_weight="1.3"
+            android:background="@color/colorDarkBlue"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorWhiteFA">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="1dp"
+                    android:background="@color/colorWhiteFA">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/colorWhiteFA">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="1dp"
+                    android:background="@color/colorWhiteFA">
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
         <!-- FOOT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/backBack84">
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <!-- navi menu-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:visibility="invisible">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:visibility="invisible">-->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
 </FrameLayout>
