@@ -7,14 +7,16 @@ import java.io.Serializable;
  */
 public class Model2Use implements Serializable{
 
-    private String use_date;
-    private String use_confirm_date;
+    private String use_date; // or 이용일시
+    private String use_confirm_date; // or 승인번호
     private String shop_name;
     private String brand;
     private String price;
     private String how_use;
     private String suc_number;
     private String check_date;
+
+
 
     public String getUse_date() {
         return use_date;

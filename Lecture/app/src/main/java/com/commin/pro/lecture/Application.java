@@ -33,6 +33,8 @@ public class Application extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
         ApplicationProperty.time_title = getResources().getStringArray(R.array.time_title);
 
         if(sharedPreferences.getBoolean(UtilShare.KEY_VALUE_ISCHECKED,false)){
