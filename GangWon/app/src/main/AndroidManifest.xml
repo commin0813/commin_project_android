@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".page.home.Page2Home"></activity>
+        <activity android:name=".page.home.Page2Home" />
+        <activity android:name=".page.energy.Page2Energy" />
+        <activity android:name=".page.development.Page2Development"></activity>
     </application>
 
 </manifest>
