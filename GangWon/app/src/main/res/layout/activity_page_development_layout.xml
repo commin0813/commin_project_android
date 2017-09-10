@@ -75,9 +75,12 @@
                 android:weightSum="4">
 
                 <LinearLayout
+                    android:id="@+id/ll_tab_sun_light"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="tab">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -97,9 +100,12 @@
                     android:background="@color/colorGrayEE" />
 
                 <LinearLayout
+                    android:id="@+id/ll_tab_sun_fire"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="tab">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -119,9 +125,12 @@
                     android:background="@color/colorGrayEE" />
 
                 <LinearLayout
+                    android:id="@+id/ll_tab_wind_force"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="tab">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -134,15 +143,19 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:background="@color/colorGrayEE" />
 
                 <LinearLayout
+                    android:id="@+id/ll_tab_water_fire"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="tab">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -166,18 +179,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <!-- 태양광 -->
+                <LinearLayout
+                    android:id="@+id/ll_sun_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="태양광" />
+                </LinearLayout>
 
                 <!-- 태양열 -->
+
+                <LinearLayout
+                    android:id="@+id/ll_sun_fire"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="태양열" />
+                </LinearLayout>
 
 
                 <!-- 풍력 -->
 
+                <LinearLayout
+                    android:id="@+id/ll_wind_force"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="풍력" />
+                </LinearLayout>
+
 
                 <!-- 지열/수열 -->
 
-            </FrameLayout>
+                <LinearLayout
+                    android:id="@+id/ll_water_fire"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="지열/수열" />
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
         <!-- FOOT -->

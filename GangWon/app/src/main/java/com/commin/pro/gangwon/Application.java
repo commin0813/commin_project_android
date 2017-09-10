@@ -14,6 +14,7 @@ public class Application extends AppCompatActivity {
         setContentView(R.layout.activity_application_layout);
 
         startActivity(new Intent(Application.this, Page2Home.class));
+        finish();
 
     }
 }

@@ -302,7 +302,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/home_selective_margin"
                     android:layout_weight="1"
-                    android:onClick=""
+                    android:id="@+id/ll_sun_light"
+                    android:clickable="true"
+                    android:onClick="startDevelopment"
                     android:background="@color/colorGrayCD"
                     android:orientation="horizontal"
                     android:padding="10dp">
@@ -348,6 +350,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/home_selective_margin"
                     android:layout_weight="1"
+                    android:id="@+id/ll_sun_fire"
+                    android:clickable="true"
+                    android:onClick="startDevelopment"
                     android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
@@ -400,6 +405,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/home_selective_margin"
                     android:layout_weight="1"
+                    android:id="@+id/ll_wind_force"
+                    android:clickable="true"
+                    android:onClick="startDevelopment"
                     android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
@@ -444,6 +452,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/home_selective_margin"
                     android:layout_weight="1"
+                    android:id="@+id/ll_water_fire"
+                    android:clickable="true"
+                    android:onClick="startDevelopment"
                     android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
