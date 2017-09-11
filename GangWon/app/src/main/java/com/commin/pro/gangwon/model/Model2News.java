@@ -24,6 +24,8 @@ public class Model2News implements Serializable {
     }
 
     public void setTarget_url(String target_url) {
+        target_url =  target_url.replace("www","m");
+
         this.target_url = target_url;
     }
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.commin.pro.gangwon.model.Model2SMP;
 import com.commin.pro.gangwon.page.ApplicationProperty;
 import com.commin.pro.gangwon.page.development.Page2Development;
 import com.commin.pro.gangwon.page.energy.Page2Energy;
+import com.commin.pro.gangwon.page.webview.Page2WebView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,11 +52,20 @@ public class Page2Home extends AppCompatActivity {
         tv_home_smp_max = (TextView) findViewById(R.id.tv_home_smp_max);
         tv_home_smp_avg = (TextView) findViewById(R.id.tv_home_smp_avg);
 
-        lst_home_news = (ListView)findViewById(R.id.lst_home_news);
+        lst_home_news = (ListView) findViewById(R.id.lst_home_news);
         lst_home_news.setDivider(null);
 
-    }
+        lst_home_news.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String url = news_items.get(position).getTarget_url();
+                Intent intent = new Intent(Page2Home.this, Page2WebView.class);
+                intent.putExtra("url", url);
+                startActivity(intent);
+            }
+        });
 
+    }
 
     private void createGUI() {
         Runnable runnable = new Runnable() {
@@ -72,7 +83,7 @@ public class Page2Home extends AppCompatActivity {
         handler.postDelayed(runnable, 100);
     }
 
-//    private static String url2 = "http://gangwon.news1.kr/news/articleList.html?sc_word=%EC%8B%A0%EC%9E%AC%EC%83%9D";
+    //    private static String url2 = "http://gangwon.news1.kr/news/articleList.html?sc_word=%EC%8B%A0%EC%9E%AC%EC%83%9D";
 //    private static String url2 = "http://www.kado.net/?mod=search&act=engine&sc_code=&sc_area=A&sc_article_type=&sc_view_level=&sc_sdate=2016-09-11&sc_edate=2017-09-11&searchWord=%EC%8B%A0%EC%9E%AC%EC%83%9D";
     private static String url2 = "http://www.kado.net/?mod=search&act=engine&cust_div_code=&searchContType=article&searchWord=%EC%8B%A0%EC%9E%AC%EC%83%9D&fromDate=&toDate=&sfield=&article_type=&sort=date";
 
@@ -92,7 +103,7 @@ public class Page2Home extends AppCompatActivity {
                 options = document.select("div > .container > #content > .syw_result_box > .syw_result > .sywr_summary > .box > ul");
                 for (Element element : options) {
                     Element title_ele = element.child(0).child(0);
-                    if(title_ele ==null){
+                    if (title_ele == null) {
                         continue;
                     }
                     Model2News model = new Model2News();
@@ -100,7 +111,7 @@ public class Page2Home extends AppCompatActivity {
                     model.setTarget_url(title_ele.attr("href"));
                     items.add(model);
 
-                    if(items.size() >= ApplicationProperty.SIZE_NEWS){
+                    if (items.size() >= ApplicationProperty.SIZE_NEWS) {
                         break;
                     }
 
@@ -117,7 +128,7 @@ public class Page2Home extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Model2News> result) {
-            adapter= new ArrayAdapter2News(Page2Home.this,R.layout.item_list_news, result);
+            adapter = new ArrayAdapter2News(Page2Home.this, R.layout.item_list_news, result);
             lst_home_news.setAdapter(adapter);
             setListViewHeightBasedOnChildren(lst_home_news);
             adapter.notifyDataSetChanged();
@@ -195,6 +206,21 @@ public class Page2Home extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+    }
+
+    public void startWebView(View view) {
+        Intent intent = new Intent(Page2Home.this, Page2WebView.class);
+        String url = "";
+        switch (view.getId()) {
+            case R.id.ll_py:
+                url = ApplicationProperty.ADDR_PYEONGCHANG;
+                break;
+            case R.id.ll_siber:
+                url = ApplicationProperty.ADDR_SIBER;
+                break;
+        }
+        intent.putExtra("url", url);
+        startActivity(intent);
     }
 
     public void startEnergyHistory(View view) {

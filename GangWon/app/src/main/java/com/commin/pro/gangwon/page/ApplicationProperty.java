@@ -10,4 +10,7 @@ public class ApplicationProperty {
     public static final int CODE_WATER_FIRE = 0x04;
 
     public static final int SIZE_NEWS = 4;
+
+    public static final String ADDR_PYEONGCHANG = "https://www.pyeongchang2018.com/ko/index";
+    public static final String ADDR_SIBER = "http://www.gangwon.to/";
 }

@@ -38,7 +38,6 @@
             android:layout_marginRight="@dimen/home_common_margin"
             android:layout_marginTop="@dimen/home_common_margin"
             android:layout_weight="2"
-
             android:orientation="horizontal">
 
             <LinearLayout
@@ -580,7 +579,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorDarkBlue"
-                    android:gravity="center">
+                    android:clickable="true"
+                    android:id="@+id/ll_py"
+                    android:gravity="center"
+                    android:onClick="startWebView">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -603,7 +605,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/backBack83"
-                    android:gravity="center">
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:id="@+id/ll_siber"
+                    android:onClick="startWebView">
 
                     <TextView
                         android:layout_width="match_parent"
