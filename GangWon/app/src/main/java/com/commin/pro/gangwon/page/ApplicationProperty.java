@@ -8,4 +8,6 @@ public class ApplicationProperty {
     public static final int CODE_SUN_FIRE = 0x02;
     public static final int CODE_WIND_FORCE = 0x03;
     public static final int CODE_WATER_FIRE = 0x04;
+
+    public static final int SIZE_NEWS = 4;
 }
