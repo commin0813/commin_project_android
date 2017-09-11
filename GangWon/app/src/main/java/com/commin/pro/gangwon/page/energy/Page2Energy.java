@@ -1,14 +1,18 @@
 package com.commin.pro.gangwon.page.energy;
 
-import android.support.constraint.solver.ArrayLinkedVariables;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.commin.pro.gangwon.R;
-
 import java.util.ArrayList;
+
 
 public class Page2Energy extends AppCompatActivity {
     private LinearLayout ll_tab_summary, ll_tab_content, ll_tab_point;
@@ -16,14 +20,17 @@ public class Page2Energy extends AppCompatActivity {
     private ArrayList<LinearLayout> tab_menu_linear;
     private ArrayList<LinearLayout> tab_linear;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_energy_layout);
         init();
-
-
     }
+
+
+
 
     private void init() {
         ll_tab_summary = (LinearLayout) findViewById(R.id.ll_tab_summary);
@@ -78,6 +85,9 @@ public class Page2Energy extends AppCompatActivity {
             }
         }
     }
+
+
+
 
 
 }

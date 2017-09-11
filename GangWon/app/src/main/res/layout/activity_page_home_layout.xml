@@ -46,9 +46,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/home_selective_margin"
                 android:layout_weight="1"
+                android:background="@color/shinhanWhitebutton"
                 android:clickable="true"
                 android:onClick="startEnergyHistory"
-                android:background="@color/shinhanWhitebutton"
                 android:orientation="vertical"
                 android:paddingLeft="7dp"
                 android:paddingTop="15dp">
@@ -146,7 +146,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@android:color/background_light"
                                 android:gravity="center"
-                                android:text="2017-09-09(토)"
+                                android:text="불러오는중.."
                                 android:textColor="@color/colorGray45"
                                 android:textSize="14sp" />
 
@@ -183,10 +183,10 @@
                             <TextView
                                 android:id="@+id/tv_home_smp_max"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:background="@android:color/background_light"
                                 android:gravity="center"
-                                android:text="71.37원"
+                                android:text="불러오는중.."
                                 android:textColor="@color/colorGray45"
                                 android:textSize="14sp" />
 
@@ -225,7 +225,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@android:color/background_light"
                                 android:gravity="center"
-                                android:text="71.37원"
+                                android:text="불러오는중.."
                                 android:textColor="@color/colorGray45"
                                 android:textSize="14sp" />
 
@@ -298,14 +298,14 @@
                 android:layout_weight="1">
 
                 <LinearLayout
+                    android:id="@+id/ll_sun_light"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/home_selective_margin"
                     android:layout_weight="1"
-                    android:id="@+id/ll_sun_light"
+                    android:background="@color/colorGrayCD"
                     android:clickable="true"
                     android:onClick="startDevelopment"
-                    android:background="@color/colorGrayCD"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -318,7 +318,7 @@
                             android:layout_width="25dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@drawable/icon_sun_light" />
                     </LinearLayout>
 
                     <TextView
@@ -346,14 +346,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_sun_fire"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/home_selective_margin"
                     android:layout_weight="1"
-                    android:id="@+id/ll_sun_fire"
+                    android:background="@color/colorGrayCD"
                     android:clickable="true"
                     android:onClick="startDevelopment"
-                    android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
                     <LinearLayout
@@ -365,7 +365,7 @@
                             android:layout_width="25dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@drawable/icon_sun_fire" />
                     </LinearLayout>
 
                     <TextView
@@ -401,14 +401,14 @@
                 android:layout_weight="1">
 
                 <LinearLayout
+                    android:id="@+id/ll_wind_force"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/home_selective_margin"
                     android:layout_weight="1"
-                    android:id="@+id/ll_wind_force"
+                    android:background="@color/colorGrayCD"
                     android:clickable="true"
                     android:onClick="startDevelopment"
-                    android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
                     <LinearLayout
@@ -420,7 +420,7 @@
                             android:layout_width="25dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@drawable/icon_wind_force" />
                     </LinearLayout>
 
                     <TextView
@@ -448,14 +448,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_water_fire"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/home_selective_margin"
                     android:layout_weight="1"
-                    android:id="@+id/ll_water_fire"
+                    android:background="@color/colorGrayCD"
                     android:clickable="true"
                     android:onClick="startDevelopment"
-                    android:background="@color/colorGrayCD"
                     android:padding="10dp">
 
                     <LinearLayout
@@ -467,7 +467,7 @@
                             android:layout_width="25dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@drawable/icon_water_fire" />
                     </LinearLayout>
 
                     <TextView
@@ -579,8 +579,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="@color/colorDarkBlue">
+                    android:background="@color/colorDarkBlue"
+                    android:gravity="center">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -589,8 +589,7 @@
                         android:text="동계 올림픽 페이지"
                         android:textColor="@color/colorWhiteFA"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -603,8 +602,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:background="@color/backBack83">
+                    android:background="@color/backBack83"
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -612,8 +612,7 @@
                         android:text="강원 사이버 관광페이지"
                         android:textColor="@color/colorWhiteFA"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
 
@@ -630,20 +629,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/colorWhiteBlue"
             android:orientation="horizontal"
-            android:weightSum="3"
-            android:background="@color/colorWhiteBlue">
+            android:weightSum="3">
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_dialer"
-                    />
+                    android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>
 
@@ -652,13 +651,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_dialer"
-                    />
+                    android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>
 
@@ -666,13 +664,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                >
+                android:gravity="center">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_dialer"
-                    />
+                    android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>
 
