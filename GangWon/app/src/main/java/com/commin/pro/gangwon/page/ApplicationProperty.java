@@ -47,6 +47,7 @@ public class ApplicationProperty {
     /***************************************
      * MENU
      */
+    public static String[] title = {"에너지 역사", "에너지 발전", "관련 링크"};
     public static String[] energy = {"개요", "내용", "요약"};
     public static String[] energy2 = {"태양광", "태양열", "풍 력", "지열/수열"};
     public static String[] links = {"동계올림픽페이지", "강원사이버관광페이지"};

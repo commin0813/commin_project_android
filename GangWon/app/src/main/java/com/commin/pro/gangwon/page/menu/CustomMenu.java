@@ -132,41 +132,41 @@ public class CustomMenu extends LinearLayout {
             lst_item_child_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    final TextView menu_name = (TextView)view.findViewById(R.id.tv_item_menu_child_name);
+                    final TextView menu_name = (TextView) view.findViewById(R.id.tv_item_menu_child_name);
                     String str = menu_name.getText().toString();
                     Intent intent = null;
-                    if(str.equalsIgnoreCase(ApplicationProperty.energy[0])){//개요
-                        intent = new Intent(context,Page2Energy.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_SUMMARY);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy[1])) {//내용
-                        intent = new Intent(context,Page2Energy.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_CONTENT);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy[2])){//요약
-                        intent = new Intent(context,Page2Energy.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_DETAIL_SUMMARY);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy2[0])){//태양광
-                        intent = new Intent(context,Page2Development.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_SUN_LIGHT);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy2[1])){//태양열
-                        intent = new Intent(context,Page2Development.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_SUN_FIRE);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy2[2])){//풍 력
-                        intent = new Intent(context,Page2Development.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_WIND_FORCE);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.energy2[3])){//지열/수열
-                        intent = new Intent(context,Page2Development.class);
-                        intent.putExtra("tab",ApplicationProperty.CODE_WATER_FIRE);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.links[0])){//동계 올림픽
-                        intent = new Intent(context,Page2WebView.class);
-                        intent.putExtra("url",ApplicationProperty.ADDR_PYEONGCHANG);
-                    }else if(str.equalsIgnoreCase(ApplicationProperty.links[1])){//강원사이버관광페이지
-                        intent = new Intent(context,Page2WebView.class);
-                        intent.putExtra("url",ApplicationProperty.ADDR_SIBER);
+                    if (str.equalsIgnoreCase(ApplicationProperty.energy[0])) {//개요
+                        intent = new Intent(context, Page2Energy.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_SUMMARY);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy[1])) {//내용
+                        intent = new Intent(context, Page2Energy.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_CONTENT);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy[2])) {//요약
+                        intent = new Intent(context, Page2Energy.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_DETAIL_SUMMARY);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy2[0])) {//태양광
+                        intent = new Intent(context, Page2Development.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_SUN_LIGHT);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy2[1])) {//태양열
+                        intent = new Intent(context, Page2Development.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_SUN_FIRE);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy2[2])) {//풍 력
+                        intent = new Intent(context, Page2Development.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_WIND_FORCE);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.energy2[3])) {//지열/수열
+                        intent = new Intent(context, Page2Development.class);
+                        intent.putExtra("tab", ApplicationProperty.CODE_WATER_FIRE);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.links[0])) {//동계 올림픽
+                        intent = new Intent(context, Page2WebView.class);
+                        intent.putExtra("url", ApplicationProperty.ADDR_PYEONGCHANG);
+                    } else if (str.equalsIgnoreCase(ApplicationProperty.links[1])) {//강원사이버관광페이지
+                        intent = new Intent(context, Page2WebView.class);
+                        intent.putExtra("url", ApplicationProperty.ADDR_SIBER);
                     }
-                    if(intent != null)
-                    context.startActivity(intent);
-                    if(context != ApplicationProperty.HOME_CONTEXT)
-                    ((Activity)context).finish();
+                    if (intent != null)
+                        context.startActivity(intent);
+                    if (context != ApplicationProperty.HOME_CONTEXT)
+                        ((Activity) context).finish();
 
                 }
             });
@@ -215,7 +215,7 @@ public class CustomMenu extends LinearLayout {
         ArrayList<Model2Menu> arrayList = new ArrayList<Model2Menu>();
         Model2Menu model = null;
 
-        String[] title = {"에너지 역사", "에너지 역사2", "관련 링크"};
+        String[] title = ApplicationProperty.title;
         ArrayList<String[]> sub_title = new ArrayList<>();
         String[] energy = ApplicationProperty.energy;
         String[] energy2 = ApplicationProperty.energy2;

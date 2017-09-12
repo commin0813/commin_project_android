@@ -4,4 +4,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="home_common_margin">7dp</dimen>
     <dimen name="home_selective_margin">3.5dp</dimen>
+
+    <dimen name="menu_common_padding">10dp</dimen>
+    <dimen name="menu_child_padding">50dp</dimen>
+    <dimen name="menu_common_textSize">20sp</dimen>
+
+
+    <dimen name="text_title1">17sp</dimen>
+    <dimen name="text_title2">15sp</dimen>
+    <dimen name="text_content">12sp</dimen>
+
 </resources>
