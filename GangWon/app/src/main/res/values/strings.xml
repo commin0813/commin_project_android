@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GangWon</string>
+    <string name="menu_name">전체메뉴</string>
 </resources>

@@ -10,9 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.commin.pro.gangwon.R;
 import com.commin.pro.gangwon.model.Model2News;
@@ -20,6 +23,9 @@ import com.commin.pro.gangwon.model.Model2SMP;
 import com.commin.pro.gangwon.page.ApplicationProperty;
 import com.commin.pro.gangwon.page.development.Page2Development;
 import com.commin.pro.gangwon.page.energy.Page2Energy;
+import com.commin.pro.gangwon.page.map.Page2Map;
+import com.commin.pro.gangwon.page.menu.CustomMenu;
+import com.commin.pro.gangwon.page.util.Util2Menu;
 import com.commin.pro.gangwon.page.webview.Page2WebView;
 
 import org.jsoup.Jsoup;
@@ -39,15 +45,20 @@ public class Page2Home extends AppCompatActivity {
     private ListView lst_home_news = null;
     private ArrayAdapter2News adapter = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_home_layout);
         init();
+        init_menu();
         createGUI();
     }
 
+
     private void init() {
+        ApplicationProperty.HOME_CONTEXT = Page2Home.this;
+
         tv_home_smp_date = (TextView) findViewById(R.id.tv_home_smp_date);
         tv_home_smp_max = (TextView) findViewById(R.id.tv_home_smp_max);
         tv_home_smp_avg = (TextView) findViewById(R.id.tv_home_smp_avg);
@@ -83,9 +94,6 @@ public class Page2Home extends AppCompatActivity {
         handler.postDelayed(runnable, 100);
     }
 
-    //    private static String url2 = "http://gangwon.news1.kr/news/articleList.html?sc_word=%EC%8B%A0%EC%9E%AC%EC%83%9D";
-//    private static String url2 = "http://www.kado.net/?mod=search&act=engine&sc_code=&sc_area=A&sc_article_type=&sc_view_level=&sc_sdate=2016-09-11&sc_edate=2017-09-11&searchWord=%EC%8B%A0%EC%9E%AC%EC%83%9D";
-    private static String url2 = "http://www.kado.net/?mod=search&act=engine&cust_div_code=&searchContType=article&searchWord=%EC%8B%A0%EC%9E%AC%EC%83%9D&fromDate=&toDate=&sfield=&article_type=&sort=date";
 
     class GetNewsInfo extends AsyncTask<Integer, Integer, ArrayList<Model2News>> {
         private Context context;
@@ -99,7 +107,7 @@ public class Page2Home extends AppCompatActivity {
             Elements options = null;
             ArrayList<Model2News> items = new ArrayList<Model2News>();
             try {
-                Document document = Jsoup.connect(url2).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
+                Document document = Jsoup.connect(ApplicationProperty.ADDR_ARTICLE).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
                 options = document.select("div > .container > #content > .syw_result_box > .syw_result > .sywr_summary > .box > ul");
                 for (Element element : options) {
                     Element title_ele = element.child(0).child(0);
@@ -130,7 +138,7 @@ public class Page2Home extends AppCompatActivity {
         protected void onPostExecute(ArrayList<Model2News> result) {
             adapter = new ArrayAdapter2News(Page2Home.this, R.layout.item_list_news, result);
             lst_home_news.setAdapter(adapter);
-            setListViewHeightBasedOnChildren(lst_home_news);
+//            setListViewHeightBasedOnChildren(lst_home_news);
             adapter.notifyDataSetChanged();
         }
     }
@@ -157,7 +165,6 @@ public class Page2Home extends AppCompatActivity {
         listView.requestLayout();
     }
 
-    private static String url = "http://www.kpx.or.kr/";
 
     class GetSMPInfo extends AsyncTask<Integer, Integer, Model2SMP> {
         private Context context;
@@ -171,7 +178,7 @@ public class Page2Home extends AppCompatActivity {
             Elements options = null;
             Model2SMP model = new Model2SMP();
             try {
-                Document document = Jsoup.connect(url).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
+                Document document = Jsoup.connect(ApplicationProperty.ADDR_SMP).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
                 options = document.select("div > #smp_01 > table > tbody > tr > td");
                 ArrayList<String> options_value = new ArrayList<>();
                 for (Element element : options) {
@@ -205,6 +212,17 @@ public class Page2Home extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (ll_nav_menu != null)
+            ll_nav_menu.setVisibility(View.INVISIBLE);
+    }
+
+    public void startMap(View view) {
+        startActivity(new Intent(Page2Home.this, Page2Map.class));
 
     }
 
@@ -255,5 +273,61 @@ public class Page2Home extends AppCompatActivity {
         }
 
         startActivity(intent);
+    }
+
+
+    /***************************************
+     * Footer
+     */
+    private LinearLayout ll_nav_menu = null;
+    private CustomMenu customMenu = null;
+
+    private void init_menu() {
+        customMenu = new CustomMenu(Page2Home.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        customMenu.setLayoutParams(lp);
+
+        ImageView imageView = (ImageView) customMenu.findViewById(R.id.iv_item_cancel_menu);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util2Menu.isNavMenuShowing(Page2Home.this, ll_nav_menu);
+            }
+        });
+    }
+
+    public void call_menu(View view) {
+        if (ll_nav_menu == null)
+            ll_nav_menu = (LinearLayout) findViewById(R.id.ll_nav_menu);
+        else
+            ll_nav_menu.removeAllViews();
+
+        ll_nav_menu.addView(customMenu);
+        Util2Menu.isNavMenuShowing(Page2Home.this, ll_nav_menu);
+    }
+
+    public void call_home(View view) {
+
+    }
+
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+        if (ll_nav_menu != null && ll_nav_menu.isShown()) {
+            Util2Menu.isNavMenuShowing(Page2Home.this, ll_nav_menu);
+            return;
+        }
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed();
+        } else {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "뒤로 버튼을 한번더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

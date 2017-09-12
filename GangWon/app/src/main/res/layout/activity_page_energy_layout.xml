@@ -232,6 +232,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:onClick="call_menu"
                     android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>
@@ -246,6 +248,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:onClick="call_home"
                     android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>
@@ -267,15 +271,13 @@
 
     </LinearLayout>
 
-    <!-- navi menu-->
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:visibility="invisible">-->
-
-
-    <!--</LinearLayout>-->
+    <!--navi menu -->
+    <LinearLayout
+        android:id="@+id/ll_nav_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="invisible"></LinearLayout>
 
 
 </FrameLayout>

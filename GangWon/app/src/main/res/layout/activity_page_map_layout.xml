@@ -1,54 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhiteFA"
-    tools:context="com.commin.pro.gangwon.page.home.Page2Home">
+    android:background="@color/colorWhiteFA">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!-- TOP -->
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="@color/colorWhiteBlue"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
 
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:text="강원도"-->
-        <!--android:textColor="@color/colorWhiteFA"-->
-        <!--android:textSize="30sp" />-->
-
-        <!--</LinearLayout>-->
-        <!-- body -->
-        <LinearLayout
+        <fragment
+            android:id="@+id/map"
+            class="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/home_selective_margin"
-            android:layout_marginLeft="@dimen/home_common_margin"
-            android:layout_marginRight="@dimen/home_common_margin"
-            android:layout_marginTop="@dimen/home_common_margin"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <WebView
-                android:id="@+id/wb_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:fadeScrollbars="false"
-                ></WebView>
-
-
-        </LinearLayout>
-
+            android:layout_weight="1" />
 
         <!-- FOOT -->
         <View
