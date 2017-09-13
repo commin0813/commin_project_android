@@ -1,12 +1,10 @@
 package com.commin.pro.gangwon.page.home;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.commin.pro.gangwon.R;
@@ -14,14 +12,14 @@ import com.commin.pro.gangwon.model.Model2News;
 
 import java.util.ArrayList;
 
-/**
- * Created by user on 2017-09-11.
+/********************************
+ * 뉴스데이터를 리스트에 뿌리기위해서 사용하는 Adapter 클래스입니다.
  */
-
 public class ArrayAdapter2News extends ArrayAdapter<Model2News> {
     private Context context;
     private int resource;
     private ArrayList<Model2News> items;
+
     public ArrayAdapter2News(Context context, int resource, ArrayList<Model2News> items) {
         super(context, resource, items);
         this.context = context;

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 /**
  * Created by user on 2017-09-08.
+ * ApplicationProperty라는 클래스는
+ * 공동으로 사용하는 static 자원들을 모아두는 클래스입니다.
+ * 이렇게개발하면 편합니다.
+ * 나중에 개발하실때 참고하세요.
  */
 public class ApplicationProperty {
     /****************************
@@ -28,6 +32,7 @@ public class ApplicationProperty {
     public static final int CODE_SUMMARY = 0x05;
     public static final int CODE_CONTENT = 0x06;
     public static final int CODE_DETAIL_SUMMARY = 0x07;
+    public static final int CODE_LINK= 0x08;
 
 
     /*************************************
@@ -48,7 +53,7 @@ public class ApplicationProperty {
      * MENU
      */
     public static String[] title = {"에너지 역사", "에너지 발전", "관련 링크"};
-    public static String[] energy = {"개요", "내용", "요약"};
+    public static String[] energy = {"개요", "내용", "요약","관련링크"};
     public static String[] energy2 = {"태양광", "태양열", "풍 력", "지열/수열"};
     public static String[] links = {"동계올림픽페이지", "강원사이버관광페이지"};
 }

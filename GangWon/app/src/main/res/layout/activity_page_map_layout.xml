@@ -70,6 +70,8 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:clickable="true"
+                    android:onClick="startCompany"
                     android:src="@android:drawable/ic_dialog_dialer" />
 
             </LinearLayout>

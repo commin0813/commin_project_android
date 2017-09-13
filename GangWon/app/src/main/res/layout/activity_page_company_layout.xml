@@ -2,32 +2,45 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhiteFA"
-    tools:context="com.commin.pro.gangwon.page.home.Page2Home">
+    android:layout_height="match_parent">
 
+    <!-- main -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!-- TOP -->
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="@color/colorWhiteBlue"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhiteBlue"
+            android:orientation="horizontal">
 
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:text="강원도"-->
-        <!--android:textColor="@color/colorWhiteFA"-->
-        <!--android:textSize="30sp" />-->
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
 
-        <!--</LinearLayout>-->
-        <!-- body -->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo" />
+
+            <View
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_name"
+                android:textColor="@color/colorWhiteFA"
+                android:textSize="23sp" />
+
+        </LinearLayout>
+
+        <!-- BODY -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,16 +51,16 @@
             android:layout_weight="2"
             android:orientation="horizontal">
 
-            <WebView
-                android:id="@+id/wb_content"
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fadeScrollbars="false"
-                android:scrollbars="none"></WebView>
+                android:scrollbars="none">
 
+                <!-- CODING HERE-->
+
+            </ScrollView>
 
         </LinearLayout>
-
 
         <!-- FOOT -->
         <View
@@ -119,4 +132,5 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="invisible"></LinearLayout>
+
 </FrameLayout>

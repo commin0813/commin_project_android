@@ -1,5 +1,6 @@
 package com.commin.pro.gangwon.page.webview;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.commin.pro.gangwon.R;
+import com.commin.pro.gangwon.page.company.Page2Company;
 import com.commin.pro.gangwon.page.energy.Page2Energy;
 import com.commin.pro.gangwon.page.map.Page2Map;
 import com.commin.pro.gangwon.page.menu.CustomMenu;
@@ -99,6 +101,12 @@ public class Page2WebView extends AppCompatActivity {
     public void call_home(View view) {
         finish();
     }
+
+    public void startCompany(View view) {
+        startActivity(new Intent(Page2WebView.this, Page2Company.class));
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         if (ll_nav_menu != null && ll_nav_menu.isShown()) {

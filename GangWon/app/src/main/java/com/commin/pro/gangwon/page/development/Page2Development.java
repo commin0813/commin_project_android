@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.commin.pro.gangwon.R;
 import com.commin.pro.gangwon.page.ApplicationProperty;
+import com.commin.pro.gangwon.page.company.Page2Company;
 import com.commin.pro.gangwon.page.energy.Page2Energy;
 import com.commin.pro.gangwon.page.menu.CustomMenu;
 import com.commin.pro.gangwon.page.util.Util2Menu;
@@ -156,7 +157,10 @@ public class Page2Development extends AppCompatActivity {
         finish();
     }
 
-
+    public void startCompany(View view){
+        startActivity(new Intent(Page2Development.this, Page2Company.class));
+        finish();
+    }
     @Override
     public void onBackPressed() {
         if (ll_nav_menu != null && ll_nav_menu.isShown()) {

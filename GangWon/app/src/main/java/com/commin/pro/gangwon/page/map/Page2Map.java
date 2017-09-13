@@ -1,6 +1,7 @@
 package com.commin.pro.gangwon.page.map;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.commin.pro.gangwon.R;
-import com.commin.pro.gangwon.page.development.Page2Development;
+import com.commin.pro.gangwon.page.company.Page2Company;
 import com.commin.pro.gangwon.page.energy.Page2Energy;
 import com.commin.pro.gangwon.page.menu.CustomMenu;
 import com.commin.pro.gangwon.page.util.Util2Menu;
@@ -18,9 +19,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Page2Map extends AppCompatActivity implements OnMapReadyCallback{
+public class Page2Map extends AppCompatActivity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,20 @@ public class Page2Map extends AppCompatActivity implements OnMapReadyCallback{
 
         init_menu();
         FragmentManager fragmentManager = getFragmentManager();
-        MapFragment mapFragment = (MapFragment)fragmentManager
+        MapFragment mapFragment = (MapFragment) fragmentManager
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
+    /**************************
+     * 이곳에 마커등을 코딩해보세요.
+     *
+     * @param map
+     */
     @Override
     public void onMapReady(GoogleMap map) {
 
-        LatLng GangWon = new LatLng(37.731583,128.592556);
+        LatLng GangWon = new LatLng(37.731583, 128.592556);
 //        MarkerOptions markerOptions = new MarkerOptions();
 //        markerOptions.position(GangWon);
 //        markerOptions.title("강원도");
@@ -81,6 +86,11 @@ public class Page2Map extends AppCompatActivity implements OnMapReadyCallback{
     }
 
     public void call_home(View view) {
+        finish();
+    }
+
+    public void startCompany(View view) {
+        startActivity(new Intent(Page2Map.this, Page2Company.class));
         finish();
     }
 
