@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".page.home.Page2Home" />
+        <activity android:name=".page.hblood.Page2HighBlood" />
+        <activity android:name=".page.diabetes.Page2Diabetes"></activity>
     </application>
 
 </manifest>

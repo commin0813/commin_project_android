@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayEE"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/app_home_padding"
+    android:paddingRight="@dimen/app_home_padding">
+    <!-- TITLE -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="고혈압"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/app_home_btn_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="총 9 항목"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <!-- Check Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cb_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+        <CheckBox
+            android:id="@+id/cb_9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다" />
+
+    </LinearLayout>
+
+    <!-- Bottom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/list_button_red"
+            android:text="확인"
+            android:textColor="@color/colorWhiteFA"
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

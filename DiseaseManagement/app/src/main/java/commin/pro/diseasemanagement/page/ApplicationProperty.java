@@ -1,4 +1,4 @@
-package commin.pro.diseasemanagement;
+package commin.pro.diseasemanagement.page;
 
 /**
  * Created by user on 2017-10-10.
