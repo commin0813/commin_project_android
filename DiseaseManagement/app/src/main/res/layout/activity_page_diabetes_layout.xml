@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="commin.pro.diseasemanagement.page.diabetes.Page2Diabetes">
+    android:background="@color/colorGrayEE"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/app_home_padding"
+    android:paddingRight="@dimen/app_home_padding">
+    <!-- TITLE -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="당뇨"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/app_home_btn_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="총 9 항목"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <!-- Check Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="갈증이 심하고 입이 마른다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="물 섭취량이 늘어, 화장실에 자주 간다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="많이 먹어도 배가 고파, 음식을 찾는다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="체중이 점점 줄어든다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="항상 무기력하고 나른한 기분이 든다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="초점이 안 잡히는 등 시야에 문제가 있다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="부스럼, 습진 등 피부 질환이 생겼다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="잇몸 염증, 잇몸 출혈이 자주 발생한다." />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="onCheckboxClicked"
+            android:text="식은 땀이 나고 헛기침과 구역질이 난다." />
+
+    </LinearLayout>
+
+    <!-- Bottom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/list_button_red"
+            android:onClick="goResult"
+            android:text="확인"
+            android:textColor="@color/colorWhiteFA"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

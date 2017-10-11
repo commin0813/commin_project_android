@@ -9,16 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Application">
+        <activity
+            android:name=".Application"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".page.home.Page2Home" />
-        <activity android:name=".page.hblood.Page2HighBlood" />
-        <activity android:name=".page.diabetes.Page2Diabetes"></activity>
+        <activity
+            android:name=".page.home.Page2Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".page.hblood.Page2HighBlood"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".page.diabetes.Page2Diabetes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".page.complete.Page2Complete"
+            android:screenOrientation="portrait" />
+        <activity android:name=".page.gastritis.Page2Gastritis"></activity>
     </application>
 
 </manifest>

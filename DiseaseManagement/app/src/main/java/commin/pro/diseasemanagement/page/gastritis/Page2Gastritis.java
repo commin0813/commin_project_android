@@ -1,28 +1,25 @@
-package commin.pro.diseasemanagement.page.hblood;
+package commin.pro.diseasemanagement.page.gastritis;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
 import commin.pro.diseasemanagement.R;
 import commin.pro.diseasemanagement.page.ApplicationProperty;
 import commin.pro.diseasemanagement.page.complete.Page2Complete;
+import commin.pro.diseasemanagement.page.diabetes.Page2Diabetes;
 import commin.pro.diseasemanagement.util.UtilCustomDialog;
 import commin.pro.diseasemanagement.util.UtilDialog;
 
-public class Page2HighBlood extends AppCompatActivity {
+public class Page2Gastritis extends AppCompatActivity {
     private int cnt_checked = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page_high_blood_layout);
+        setContentView(R.layout.activity_page_gastritis_layout);
     }
-
 
     public void onCheckboxClicked(View view) {
         boolean checked = ((CheckBox) view).isChecked();
@@ -38,25 +35,26 @@ public class Page2HighBlood extends AppCompatActivity {
 
 
     public void goResult(View view) {
-        boolean isComplete = false;
-        final Intent intent = new Intent(Page2HighBlood.this, Page2Complete.class);
+        final Intent intent = new Intent(Page2Gastritis.this, Page2Complete.class);
         if (this.cnt_checked >= 0 && this.cnt_checked <= 3) {
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_NORMAL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_EXPLAIN, ApplicationProperty.STRING_VALUE_COMPLETE_EXPLAIN_NORMAL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_BUTTON_TYPE, ApplicationProperty.INTEGER_VALUE_COMPLETE_BUTTON_TYPE_NORMAL);
         } else if (this.cnt_checked >= 4 && this.cnt_checked <= 6) {
-            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_HIGH_1);
+            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_GASTRITIS_1);
+            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT_DETAIL, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_GASTRITIS_DETAIL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_EXPLAIN, ApplicationProperty.STRING_VALUE_COMPLETE_EXPLAIN_ABNORMAL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_BUTTON_TYPE, ApplicationProperty.INTEGER_VALUE_COMPLETE_BUTTON_TYPE_ARROW);
         } else if (this.cnt_checked >= 7 && this.cnt_checked <= 9) {
-            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_HIGH_2);
+            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_GASTRITIS_2);
+            intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_RESULT_DETAIL, ApplicationProperty.STRING_VALUE_COMPLETE_RESULT_ABNORMAL_GASTRITIS_DETAIL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_EXPLAIN, ApplicationProperty.STRING_VALUE_COMPLETE_EXPLAIN_ABNORMAL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_BUTTON_TYPE, ApplicationProperty.INTEGER_VALUE_COMPLETE_BUTTON_TYPE_ARROW);
         }
 
 
         //Dialog
-        UtilDialog.openCustomDialogConfirm(Page2HighBlood.this, "검사완료", "검사 결과 " + this.cnt_checked + "개가 체크되었습니다. 맞습니까?", "예", "아니오", new UtilCustomDialog.OnClickListener() {
+        UtilDialog.openCustomDialogConfirm(Page2Gastritis.this, "검사완료", "검사 결과 " + this.cnt_checked + "개가 체크되었습니다. 맞습니까?", "예", "아니오", new UtilCustomDialog.OnClickListener() {
             @Override
             public void onClick() {
                 startActivity(intent);

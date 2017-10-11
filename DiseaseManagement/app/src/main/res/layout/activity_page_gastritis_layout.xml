@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-
         >
 
         <TextView
@@ -19,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="고혈압"
+            android:text="위염"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/app_home_btn_text_size"
             android:textStyle="bold" />
@@ -46,63 +45,63 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="평소 음식을 짜게 먹는 편이다." />
+            android:text="소화불량이 있다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="부모나 형제자매 중에 고혈압 환자가 있다." />
+            android:text="위장 부근의 불편한 감이 있다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="남자는 45세, 여자는 55세 이상이다." />
+            android:text="명치 부위의 통증이 있다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="술을 1주일에 3회 이상 마신다." />
+            android:text="잦은 트림을 한다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="현재 당뇨병을 앓고 있다." />
+            android:text="구역질을 한다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="성격이 급하고 화를 잘 내는 편이다." />
+            android:text="속쓰림이 있다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="규칙적인 운동을 거의 하지 않는다." />
+            android:text="복부 팽만감이 있다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="평소 튀김 같은 기름기가 많은 음식을 즐겨 먹는다." />
+            android:text="배에서 소리가 난다." />
 
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="onCheckboxClicked"
-            android:text="가끔 가슴이 울렁거리고 맥박이 고르지 않게 뛴다." />
+            android:text="속이 거북하다." />
 
     </LinearLayout>
 
