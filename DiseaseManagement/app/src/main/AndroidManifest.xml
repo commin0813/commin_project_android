@@ -31,7 +31,8 @@
         <activity
             android:name=".page.complete.Page2Complete"
             android:screenOrientation="portrait" />
-        <activity android:name=".page.gastritis.Page2Gastritis"></activity>
+        <activity android:name=".page.gastritis.Page2Gastritis" />
+        <activity android:name=".page.management.Page2Management"></activity>
     </application>
 
 </manifest>
