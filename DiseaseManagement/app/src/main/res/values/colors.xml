@@ -31,8 +31,16 @@
     <color name="colorBlack">#000000</color>
     <color name="colorRed36">#FF3636</color>
 
+
+
     <color name="today">#FF4081</color>
     <color name="greyed_out">#c7c7c7</color>
+
+    <!-- calendar title color -->
+    <color name="summer">#44eebd82</color>
+    <color name="fall">#44d8d27e</color>
+    <color name="winter">#44a1c1da</color>
+    <color name="spring">#448da64b</color>
 
     <!-- shinhan -->
     <color name="shinhanNaby">#17181d</color>

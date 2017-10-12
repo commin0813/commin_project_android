@@ -1,14 +1,12 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <!-- No Title Bar-->
-        <item name="windowActionBar">false</item>
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -16,9 +14,6 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:background">@drawable/splash</item>
     </style>
-
-
-    출처: http://hearit.tistory.com/21 [hear.IT]
 
 
 </resources>

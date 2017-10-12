@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.Button;
 
 import commin.pro.diseasemanagement.R;
+import commin.pro.diseasemanagement.dao.DBHelper;
+import commin.pro.diseasemanagement.page.calendar.Page2Calendar;
 import commin.pro.diseasemanagement.page.diabetes.Page2Diabetes;
 import commin.pro.diseasemanagement.page.gastritis.Page2Gastritis;
 import commin.pro.diseasemanagement.page.hblood.Page2HighBlood;
 
 public class Page2Home extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +41,11 @@ public class Page2Home extends AppCompatActivity {
                 startActivity(new Intent(Page2Home.this, Page2Gastritis.class));
                 break;
             }
-//
-//            case R.id.btn_high_blood : {
-//
-//                break;
-//            }
+
+            case R.id.btn_my_memo : {
+                startActivity(new Intent(Page2Home.this, Page2Calendar.class));
+                break;
+            }
 
 
         }

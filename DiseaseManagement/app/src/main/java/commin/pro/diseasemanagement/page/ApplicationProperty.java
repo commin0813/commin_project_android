@@ -1,5 +1,7 @@
 package commin.pro.diseasemanagement.page;
 
+import commin.pro.diseasemanagement.dao.DBHelper;
+
 /**
  * Created by user on 2017-10-10.
  */
@@ -12,6 +14,7 @@ public class ApplicationProperty {
     public static String STRING_KEY_VALUE_RESULT_DETAIL = "result_detail";
     public static String STRING_KEY_VALUE_EXPLAIN = "explain";
     public static String STRING_KEY_VALUE_BUTTON_TYPE = "btn_type";
+    public static String STRING_KEY_VALUE_CALANDAR_MODEL = "Model2Calandar";
 
     /*********************
      * COMPLETE INTENT VALUE
@@ -32,12 +35,17 @@ public class ApplicationProperty {
     public static String STRING_VALUE_COMPLETE_RESULT_ABNORMAL_GASTRITIS_DETAIL = "식습관, 생활습관을 바꿔야 합니다.";
 
 
-
     public static String STRING_VALUE_COMPLETE_EXPLAIN_NORMAL = "이대로 쭉~ 유지하세요";
     public static String STRING_VALUE_COMPLETE_EXPLAIN_ABNORMAL = "화살표를 눌러 질병관리 방법을 보세요.";
 
     public static int INTEGER_VALUE_COMPLETE_BUTTON_TYPE_NORMAL = 0x01;
     public static int INTEGER_VALUE_COMPLETE_BUTTON_TYPE_ARROW = 0x02;
 
+    /*********************************
+     * ACTIVITY FOR RESULT CODE
+     */
+    public static int INTEGER_VALUE_CALANDAR_RESULT_CODE = 0x03;
+
+    public static DBHelper dbHelper = null;
 
 }
