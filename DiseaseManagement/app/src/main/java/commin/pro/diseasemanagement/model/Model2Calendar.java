@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import commin.pro.diseasemanagement.dao.DBHelper;
+import commin.pro.diseasemanagement.page.ApplicationProperty;
 
 /**
  * Created by user on 2017-10-12.
@@ -65,8 +66,8 @@ public class Model2Calendar implements Serializable {
         this.date = date;
     }
 
-    public static HashMap<Date, Model2Calendar> getHashMap(Activity activity) throws Exception {
-        final DBHelper dbHelper = new DBHelper(activity, "disease_management2.db", null, 1);
+    public static HashMap<Date, Model2Calendar> getHashMap() throws Exception {
+        DBHelper dbHelper = ApplicationProperty.dbHelper;
         return dbHelper.query_all();
     }
 }

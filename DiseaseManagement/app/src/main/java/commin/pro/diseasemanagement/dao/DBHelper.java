@@ -67,10 +67,10 @@ public class DBHelper extends SQLiteOpenHelper {
 //        db.close();
 //    }
 
-    public void delete(int id) {
+    public void delete(Model2Calendar model) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE _id='" + id + "';");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE _id='" + model.getDb_id() + "';");
         db.close();
     }
 

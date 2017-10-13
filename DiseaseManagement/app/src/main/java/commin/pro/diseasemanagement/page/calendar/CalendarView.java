@@ -3,6 +3,7 @@ package commin.pro.diseasemanagement.page.calendar;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -152,19 +153,20 @@ public class CalendarView extends LinearLayout {
     }
 
     public void updateCalendar() {//운동 데이터가 있을 수 있고 없을 수 있으므로, 매개변수가없는 메서드를 만들어서 분기하여 updateCalendar(events)를 호출합니다.
-//        HashMap<Date,Model2Calendar> result_map = Model2Calendar.getHashMap(get);
+        try{
+            HashSet<Date> events = new HashSet<>();
+            if (!Model2Calendar.getHashMap().isEmpty()) {
+                for (Date date : Model2Calendar.getHashMap().keySet()) {
+                    events.add(date);
+                }
+                updateCalendar(events);
+            } else {
+                updateCalendar(null);
+            }
 
-//        HashSet<Date> events = new HashSet<>();
-//        if (!Dao2Excercise.getHashMap().isEmpty()) {
-//            for (Date date : Dao2Excercise.getHashMap().keySet()) {
-//                events.add(date);
-//            }
-//            updateCalendar(events);
-//        } else {
-//            updateCalendar(null);
-//        }
-
-            updateCalendar(null);
+        }catch (Exception e){
+            Log.w("eee",e);
+        }
     }
 
 

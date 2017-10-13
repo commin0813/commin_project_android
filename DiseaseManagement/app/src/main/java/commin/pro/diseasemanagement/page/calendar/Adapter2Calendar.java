@@ -2,6 +2,7 @@ package commin.pro.diseasemanagement.page.calendar;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import commin.pro.diseasemanagement.R;
+import commin.pro.diseasemanagement.model.Model2Calendar;
 
 /**
  * Created by user on 2016-11-28.
@@ -48,21 +51,38 @@ public class Adapter2Calendar extends ArrayAdapter<Date> {
         }
 
         view.setBackgroundResource(0);
-//        if (eventDays != null) {
-//            for (Date eventDate : eventDays) {
-//               final Model2Excercise model =Model2Excercise.getModel(eventDate);
-//                if (eventDate.getDate() == day &&
-//                        eventDate.getMonth() == month &&
-//                        eventDate.getYear() == year) {
-//                    if(model.isBeginner()){
-//                        view.setBackgroundResource(R.drawable.marker_yellow);
-//                    }else{
-//                        view.setBackgroundResource(R.drawable.marker_red);
-//                    }
-//                    break;
-//                }
-//            }
-//        }
+        if (eventDays != null) {
+            for (Date eventDate : eventDays) {
+                Model2Calendar model = null;
+
+                try{
+                    HashMap<Date, Model2Calendar> map = Model2Calendar.getHashMap();
+                    for (Date d : map.keySet()) {
+                        if (d.getYear() == date.getYear()//
+                                && d.getMonth() == date.getMonth()//
+                                && d.getDay() == date.getDay()) //
+                        {
+                            model = map.get(d);
+                            break;
+                        }
+                    }
+
+                }catch (Exception e){
+                    Log.w("",e);
+                }
+
+                if (eventDate.getDate() == day &&
+                        eventDate.getMonth() == month &&
+                        eventDate.getYear() == year) {
+                    if(model.getText().equals("정상")){
+                        view.setBackgroundResource(R.drawable.marker_yellow);
+                    }else{
+                        view.setBackgroundResource(R.drawable.marker_red);
+                    }
+                    break;
+                }
+            }
+        }
         TextView textView = (TextView) view.findViewById(R.id.tv_calendar_day);
         textView.setTypeface(null, Typeface.NORMAL);
         textView.setTextColor(context.getResources().getColor(R.color.greyed_out));

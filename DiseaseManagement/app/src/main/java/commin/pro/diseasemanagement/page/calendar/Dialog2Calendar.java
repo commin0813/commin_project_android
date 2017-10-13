@@ -41,7 +41,8 @@ public class Dialog2Calendar extends Activity {
     }
 
     public void save(View view) {
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "disease_management2.db", null, 1);
+//        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "disease_management2.db", null, 1);
+        final DBHelper dbHelper =ApplicationProperty.dbHelper;
 
         if (ed_dialog_shrink.getText().toString().equals("")) {
             UtilDialog.showToast(Dialog2Calendar.this, "수축 값을 입력하세요");
@@ -65,7 +66,5 @@ public class Dialog2Calendar extends Activity {
 
         setResult(1);
         finish();
-
-
     }
 }
