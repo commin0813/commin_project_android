@@ -59,6 +59,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return result_map;
     }
 
+    public boolean isData(Date date)throws Exception{
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+this.TABLE_NAME + " WHERE date='"+date+"';", null);
+        while(cursor.moveToNext()){
+            return true;
+        }
+        return false;
+    }
+
 //    public void update(Model2Calendar model) {
 //
 //        SQLiteDatabase db = getWritableDatabase();
@@ -67,10 +76,10 @@ public class DBHelper extends SQLiteOpenHelper {
 //        db.close();
 //    }
 
-    public void delete(Model2Calendar model) {
+    public void delete(Date date) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE _id='" + model.getDb_id() + "';");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE date='" + date + "';");
         db.close();
     }
 

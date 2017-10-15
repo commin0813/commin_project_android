@@ -59,7 +59,7 @@ public class Dialog2Calendar extends Activity {
 
         try {
             dbHelper.insert(model);
-            UtilDialog.showToast(Dialog2Calendar.this, "저장완료 : " + model.getRelaxation() + " : " + model.getShrink() + ":" + model.getText());
+            UtilDialog.showToast(Dialog2Calendar.this, "저장완료 ");
         } catch (Exception e) {
             Log.w("try", e);
         }

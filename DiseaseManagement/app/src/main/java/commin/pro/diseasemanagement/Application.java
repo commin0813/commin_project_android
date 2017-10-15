@@ -23,7 +23,7 @@ public class Application extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "disease_management2.db", null, 1);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "disease_management2.db", null, 2);
         ApplicationProperty.dbHelper = dbHelper;
 
         startActivity(new Intent(this, Page2Home.class));
