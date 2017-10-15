@@ -31,16 +31,20 @@
         <activity
             android:name=".page.complete.Page2Complete"
             android:screenOrientation="portrait" />
-        <activity android:name=".page.gastritis.Page2Gastritis"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".page.management.Page2Management"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".page.calendar.Page2Calendar"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".page.gastritis.Page2Gastritis"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".page.management.Page2Management"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".page.calendar.Page2Calendar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".page.calendar.Dialog2Calendar"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog"></activity>
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".page.manage_highblood.Page2Manage_Highblood"></activity>
     </application>
 
 </manifest>
