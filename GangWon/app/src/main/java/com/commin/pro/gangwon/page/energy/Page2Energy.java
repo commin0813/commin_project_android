@@ -66,7 +66,7 @@ public class Page2Energy extends AppCompatActivity {
 
     /************************
      * CODE 값으로 분기하여 해당 탭을 열어줍니다.
-     * tab 화면과 tab의 색깔을 변경시켜줍니다.
+     * tab 화면과 tab의 색깔을 변경
      * @param tab
      */
     private void setInitTab(int tab) {
@@ -93,7 +93,7 @@ public class Page2Energy extends AppCompatActivity {
     }
 
     /*******************
-     * tab을 누를때마다 호출되는 메서드입니다.
+     * tab을 누를때마다 호출되는 메서드
      * @param view
      */
     public void tab(View view) {
@@ -104,9 +104,9 @@ public class Page2Energy extends AppCompatActivity {
     private void setTabColor(View view) {
         for (View view1 : tab_menu_linear) {
             if (view == view1) {
-                view1.setBackgroundColor(getResources().getColor(R.color.colorBrown));// 탭을 눌렀을때 색을 변경하고싶으시면 이곳에서 색을 변경하시면됩니다.
+                view1.setBackgroundColor(getResources().getColor(R.color.colorBrown));
             } else {
-                view1.setBackgroundColor(getResources().getColor(R.color.colorGrayCD));//탭이 눌리지않는 상태의 색을 변경하고싶으시면 이곳에서 색을 변경하시면됩니다.
+                view1.setBackgroundColor(getResources().getColor(R.color.colorGrayCD));
             }
         }
     }

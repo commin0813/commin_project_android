@@ -26,13 +26,6 @@ import com.commin.pro.gangwon.page.webview.Page2WebView;
 
 import java.util.ArrayList;
 
-/************************************
- * 처음에 그냥 리스트만있는 메뉴인지 알았는데
- * 알고보니 ExpendableListView를 사용한 메뉴더라구요.
- * 제가 잘못봤으니 그냥 해드렸습니다!
- * 라이브러리를 사용하지않고 만들었기때문에 많이 복잡합니다.
- * 다른 Activity에서도 재활용이 가능하게 만들었기때문입니다.
- */
 
 public class CustomMenu extends LinearLayout {
     private ImageView iv_item_cancel_menu;
@@ -101,10 +94,7 @@ public class CustomMenu extends LinearLayout {
         }
 
         /***************************
-         * 이 메서드는 리스트의 그룹을 그려주는 메서드입니다.
-         * 그러니까 이앱에서는 에너지 역사, 에너지발전, 관련링크앱을 넣으면되겠지요.
-         * 메뉴를 보시면 아이콘 + 그룹이름 으로 되어있는데
-         * 아이콘을 각각 따른 아이콘으로 만들기위해서는 이곳에서 조건으로 분기하여 따로따로 이미지뷰를 설정하면되겠습니다.
+         *
          * @param groupPosition
          * @param isExpanded
          * @param convertView
@@ -120,22 +110,9 @@ public class CustomMenu extends LinearLayout {
             }
 
             final TextView tv_use_date = (TextView) convertView.findViewById(R.id.tv_item_menu_group_name);
-            final ImageView iv_item_menu_gorup_icon = (ImageView) convertView.findViewById(R.id.iv_item_menu_gorup_icon);//아이콘 ImageView입니다.
+            final ImageView iv_item_menu_gorup_icon = (ImageView) convertView.findViewById(R.id.iv_item_menu_gorup_icon);//아이콘 ImageView
 
 
-            /**************
-             * 주석풀고 바꾸면됩니다.
-             */
-//            switch (groupPosition){
-//                case 0: iv_item_menu_gorup_icon.setImageResource(R.drawable.icon_sun_fire);
-//                    break;
-//                case 1: iv_item_menu_gorup_icon.setImageResource(R.drawable.icon_sun_light);
-//                    break;
-//                case 2: iv_item_menu_gorup_icon.setImageResource(R.drawable.icon_water_fire);
-//                    break;
-//                default:iv_item_menu_gorup_icon.setImageResource(R.drawable.icon_wind_force);
-//                    break;
-//            }
 
             tv_use_date.setText(items.get(groupPosition).getGroup_name());
 
@@ -214,7 +191,6 @@ public class CustomMenu extends LinearLayout {
 
         /****************************
          * ListView의 크기를 계산해주는 메서드입니다.
-         * 이 메서드는 유용하게 쓰이니까 가지고있다가 리스트뷰 사용할때 많이 사용하세요.
          * @param listView
          */
         public void setListViewHeightBasedOnChildren(ListView listView) {
