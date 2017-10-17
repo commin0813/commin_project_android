@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import commin.pro.diseasemanagement.R;
 import commin.pro.diseasemanagement.page.ApplicationProperty;
+import commin.pro.diseasemanagement.page.manage_highblood.Page2Manage_Highblood;
 
 public class Page2Complete extends AppCompatActivity {
     private TextView tv_complete_result, tv_complete_explain, tv_complete_result2;
@@ -39,7 +40,8 @@ public class Page2Complete extends AppCompatActivity {
         btn_complete_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = getIntent();
+                startActivity(new Intent(Page2Complete.this, Page2Manage_Highblood.class));
             }
         });
     }
