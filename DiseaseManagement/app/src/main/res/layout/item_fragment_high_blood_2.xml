@@ -2,234 +2,246 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="25sp"
-    android:textColor="@color/colorBlack"
-    android:paddingLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"
+        android:text="주의사항"
+        android:textColor="@color/colorBlack"
 
-    android:text="주의사항" />
+        android:textSize="25sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
         android:padding="20dp"
-        >
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="1."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="겨울철 기상시, 아침공기의 "
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorRed"
                 android:text="보온 필요"
-                />
+                android:textColor="@color/colorRed"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="하다."
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
 
         </LinearLayout>
     </LinearLayout>
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:padding="20dp"
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="2."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="아침 배뇨시  "
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorRed"
                 android:text="따뜻한 옷 착용"
-                />
+                android:textColor="@color/colorRed"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="한다."
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
 
         </LinearLayout>
     </LinearLayout>
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:padding="20dp"
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="3."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="따뜻한 물로 목욕하고, 탕에 오래 있거나 사우나 하지않는다.  "
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:padding="20dp"
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="4."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="냉탕과 온탕을 번갈아가며 들어가지 않도록 한다.  "
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
-
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:padding="20dp"
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="5."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="커피나 홍차와 같은  "
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorRed"
                 android:text="카페인 음료는 절제"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:text="한다."
-                />
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
-            android:layout_height="wrap_content"
-            android:text="6."
-            />
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:text="식사 후 "
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:textColor="@color/colorRed"
-                android:text="30분 -1시간정도 쉰 후,"
-                />
+                android:textSize="15dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="한다."
                 android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:text="6."
+            android:textColor="@color/colorBlack" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식사 후 "
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30분 -1시간정도 쉰 후,"
+                android:textColor="@color/colorRed"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="운동을 한다."
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -237,27 +249,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:orientation="horizontal"
-        android:weightSum="2"
-        >
+        android:padding="20dp"
+        android:weightSum="2">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textColor="@color/colorBlack"
             android:layout_height="wrap_content"
+            android:layout_weight="0.3"
             android:text="7."
-            />
+            android:textColor="@color/colorBlack" />
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1.7"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1.7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
                 android:text="규칙적인 시간에 취침하도록 한다."
-                />
+                android:textColor="@color/colorBlack"
+                android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

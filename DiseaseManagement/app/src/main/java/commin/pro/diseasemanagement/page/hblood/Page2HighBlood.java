@@ -54,6 +54,8 @@ public class Page2HighBlood extends AppCompatActivity {
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_BUTTON_TYPE, ApplicationProperty.INTEGER_VALUE_COMPLETE_BUTTON_TYPE_ARROW);
         }
 
+        intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_TYPE,ApplicationProperty.HIGH_BLOOD_TYPE);
+
 
         //Dialog
         UtilDialog.openCustomDialogConfirm(Page2HighBlood.this, "검사완료", "검사 결과 " + this.cnt_checked + "개가 체크되었습니다. 맞습니까?", "예", "아니오", new UtilCustomDialog.OnClickListener() {

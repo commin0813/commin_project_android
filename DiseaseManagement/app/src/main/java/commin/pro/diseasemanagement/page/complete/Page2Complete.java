@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import commin.pro.diseasemanagement.R;
 import commin.pro.diseasemanagement.page.ApplicationProperty;
-import commin.pro.diseasemanagement.page.manage_highblood.Page2Manage_Highblood;
+import commin.pro.diseasemanagement.page.manage.Page2Manage_Highblood;
+import commin.pro.diseasemanagement.page.manage.Page2Manage_diabetes;
+import commin.pro.diseasemanagement.page.manage.Page2Manage_gastrits;
 
 public class Page2Complete extends AppCompatActivity {
     private TextView tv_complete_result, tv_complete_explain, tv_complete_result2;
@@ -41,7 +43,17 @@ public class Page2Complete extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                startActivity(new Intent(Page2Complete.this, Page2Manage_Highblood.class));
+                String type = intent.getStringExtra(ApplicationProperty.STRING_KEY_VALUE_TYPE);
+                if(type.equals(ApplicationProperty.HIGH_BLOOD_TYPE)){
+                    startActivity(new Intent(Page2Complete.this, Page2Manage_Highblood.class));
+                }else if(type.equals(ApplicationProperty.DIABETES_TYPE)){
+                    startActivity(new Intent(Page2Complete.this, Page2Manage_diabetes.class));
+                }else if(type.equals(ApplicationProperty.GASTRITIS_TYPE)){
+                    startActivity(new Intent(Page2Complete.this, Page2Manage_gastrits.class));
+                }
+                finish();
+
+
             }
         });
     }
