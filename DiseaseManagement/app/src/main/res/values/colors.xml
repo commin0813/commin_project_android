@@ -56,6 +56,7 @@
     <!-- background color -->
     <color name="backBackDDC">#DDCAC8</color>
     <color name="backBack34">#3498C8</color>
+    <color name="backBackF8">#F8FDFF</color>
     <color name="backBack84">#8498C8</color>
     <color name="backBackCB">#CBA983</color>
     <color name="backBack80">#806B53</color>

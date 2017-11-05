@@ -44,7 +44,9 @@
             android:name=".page.calendar.Dialog2Calendar"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".page.manage_highblood.Page2Manage_Highblood"></activity>
+        <activity android:name=".page.manage.Page2Manage_Highblood" />
+        <activity android:name=".page.manage.Page2Manage_diabetes" />
+        <activity android:name=".page.manage.Page2Manage_gastrits"></activity>
     </application>
 
 </manifest>

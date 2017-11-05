@@ -12,9 +12,6 @@ import com.commin.pro.gangwon.model.Model2News;
 
 import java.util.ArrayList;
 
-/********************************
- * 뉴스데이터를 리스트에 뿌리기위해서 사용하는 Adapter 클래스입니다.
- */
 public class ArrayAdapter2News extends ArrayAdapter<Model2News> {
     private Context context;
     private int resource;

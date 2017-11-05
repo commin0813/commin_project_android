@@ -35,7 +35,6 @@ public class Page2Map extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     /**************************
-     * 이곳에 마커등을 코딩해보세요.
      *
      * @param map
      */

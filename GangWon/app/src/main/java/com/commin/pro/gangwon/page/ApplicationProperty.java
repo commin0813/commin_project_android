@@ -9,10 +9,6 @@ import java.util.ArrayList;
 
 /**
  * Created by user on 2017-09-08.
- * ApplicationProperty라는 클래스는
- * 공동으로 사용하는 static 자원들을 모아두는 클래스입니다.
- * 이렇게개발하면 편합니다.
- * 나중에 개발하실때 참고하세요.
  */
 public class ApplicationProperty {
     /****************************

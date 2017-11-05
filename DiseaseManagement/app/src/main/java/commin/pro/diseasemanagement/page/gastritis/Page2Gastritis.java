@@ -51,7 +51,7 @@ public class Page2Gastritis extends AppCompatActivity {
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_EXPLAIN, ApplicationProperty.STRING_VALUE_COMPLETE_EXPLAIN_ABNORMAL);
             intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_BUTTON_TYPE, ApplicationProperty.INTEGER_VALUE_COMPLETE_BUTTON_TYPE_ARROW);
         }
-
+        intent.putExtra(ApplicationProperty.STRING_KEY_VALUE_TYPE,ApplicationProperty.GASTRITIS_TYPE);
 
         //Dialog
         UtilDialog.openCustomDialogConfirm(Page2Gastritis.this, "검사완료", "검사 결과 " + this.cnt_checked + "개가 체크되었습니다. 맞습니까?", "예", "아니오", new UtilCustomDialog.OnClickListener() {

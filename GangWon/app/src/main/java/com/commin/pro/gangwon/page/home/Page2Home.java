@@ -119,8 +119,6 @@ public class Page2Home extends AppCompatActivity {
 
     /*********************************
      * web에서 기사를 크롤링하기위한 AsyncTask를 상속받은 클래스,
-     * AsyncTask를 사용한이유는 크롤링이 Internet을 사용하기때문에
-     * MainThread 안에서 사용할수없어서입니다.
      */
     class GetNewsInfo extends AsyncTask<Integer, Integer, ArrayList<Model2News>> {
         private Context context;
@@ -135,7 +133,7 @@ public class Page2Home extends AppCompatActivity {
             ArrayList<Model2News> items = new ArrayList<Model2News>();
             try {
                 //Jsoup 라이브러리 사용
-                Document document = Jsoup.connect(ApplicationProperty.ADDR_ARTICLE).get(); // Jsoup이라는 라이브러리를 이용해서 Doc 형식의 html 파싱데이터를 받아옵니다.
+                Document document = Jsoup.connect(ApplicationProperty.ADDR_ARTICLE).get();
                 options = document.select("div > .container > #content > .syw_result_box > .syw_result > .sywr_summary > .box > ul");
                 for (Element element : options) {
                     Element title_ele = element.child(0).child(0);
@@ -146,8 +144,6 @@ public class Page2Home extends AppCompatActivity {
                     model.setTitle(title_ele.text());
                     model.setTarget_url(title_ele.attr("href"));
                     items.add(model);
-
-                    //ApplicationProperty에있는 SIZE_NEWS의 값을 고치면 크롤링해오는 데이터의 양을 조절할수있습니다. 제생각엔 4개말고 여러개를 해도 괜찮을 거같네요. 스크롤되니까요.
                     if (items.size() >= ApplicationProperty.SIZE_NEWS) {
                         break;
                     }
@@ -169,14 +165,14 @@ public class Page2Home extends AppCompatActivity {
             lst_home_news.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-            if (mProgressDialog != null && mProgressDialog.isShowing()) { // 맨 마지막에 호출되는 메서드이므로 이곳에 다이얼로그 프로그래스바를 dissmiss시키는 코딩을 했습니다.
+            if (mProgressDialog != null && mProgressDialog.isShowing()) {
                 mProgressDialog.dismiss();
             }
         }
     }
 
     /**************
-     * smp 크롤링하기위한 클래스입니다. 사용이유는 news와 같습니다.
+     * smp 크롤링하기위한 클래스
      */
     class GetSMPInfo extends AsyncTask<Integer, Integer, Model2SMP> {
         private Context context;
@@ -344,8 +340,6 @@ public class Page2Home extends AppCompatActivity {
     /***************************
      * 메뉴 화면을 부릅니다.'
      * isNavMenuShowing메서드를 통해서 열고닫을때 애니메이션효과를 같이줍니다.
-     * 여러곳에서 호출해야하는 메서드여서 Util2Menu라는 클래스를 만들고 안에
-     * static 함수로 만들었습니다.
      * @param view
      */
     public void call_menu(View view) {
